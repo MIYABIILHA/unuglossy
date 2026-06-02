@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UNU 霅瑁鈭格黎蝟餃? ? ?啁?蕃霅臬??抒陛??(撱???芸???</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Noto+Sans+TC:wght@400;700;900&family=Outfit:wght@700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --teal:   #00A79D;
+      --teal-d: #006D66;
+      --teal-l: #D6F4F1;
+      --org:    #F47B20;
+      --org-l:  #FFF0E5;
+      --jp:     #C0392B;
+      --jp-l:   #FDF3F2;
+      --zh:     #1565C0;
+      --zh-l:   #EEF5FF;
+      --note-c: #777;
+      --dark:   #1A2828;
+      --ltgray: #F2F7F7;
+      --white:  #FFFFFF;
+      --r: 16px;
+      --sh: 0 6px 28px rgba(0,130,120,.13);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Sans TC','Noto Sans JP',sans-serif; background:#0D1A1A; color:var(--dark); }
+
+    /* ?? NAV ?? */
+    #nav {
+      position:fixed; top:0; left:0; right:0; z-index:300;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:11px 22px;
+      background:rgba(8,20,20,.92); backdrop-filter:blur(12px);
+      border-bottom:1px solid rgba(0,167,157,.22);
+    }
+    #nav .logo { font-family:'Outfit',sans-serif; font-weight:900; font-size:1.25rem; color:var(--teal); letter-spacing:2px; }
+    #nav .info { font-size:.75rem; color:rgba(255,255,255,.35); text-align:center; line-height:1.4; }
+    #nav .btns { display:flex; gap:8px; }
+    #nav button {
+      background:rgba(0,167,157,.12); border:1px solid rgba(0,167,157,.35);
+      color:var(--teal); padding:7px 16px; border-radius:100px; cursor:pointer;
+      font-size:.78rem; font-weight:700; transition:.2s;
+    }
+    #nav button:hover { background:var(--teal); color:#fff; }
+    #nav button:disabled { opacity:.28; cursor:default; }
+
+    /* ?? DOTS ?? */
+    #dots {
+      position:fixed; right:16px; top:50%; transform:translateY(-50%);
+      display:flex; flex-direction:column; gap:6px; z-index:299;
+    }
+    .dot {
+      width:7px; height:7px; border-radius:50%;
+      background:rgba(0,167,157,.22); border:none; cursor:pointer; transition:.25s;
+    }
+    .dot.on { background:var(--teal); transform:scale(1.6); }
+
+    /* ?? STAGE / SLIDES ?? */
+    #stage { padding-top:64px; display:flex; flex-direction:column; align-items:center; }
+    .slide { display:none; width:100%; max-width:1200px; margin:24px auto; }
+    .slide.on { display:block; animation:pop .32s ease both; }
+    @keyframes pop { from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;} }
+
+    /* ?? CARD ?? */
+    .card { background:var(--white); border-radius:var(--r); overflow:hidden; box-shadow:var(--sh); }
+
+    /* ?? Slide label ?? */
+    .slabel { display:flex; align-items:center; gap:10px; padding:8px 0 4px; }
+    .slabel .sn { font-family:'Outfit',sans-serif; font-size:.68rem; font-weight:700; color:rgba(255,255,255,.32); letter-spacing:2px; }
+    .slabel .st { font-size:.68rem; color:rgba(255,255,255,.22); }
+
+    /* ?? Layout ?? */
+    .split2 { display:grid; grid-template-columns:1fr 1fr; }
+    .split3 { display:grid; grid-template-columns:repeat(3,1fr); }
+    .imgpanel { overflow:hidden; }
+    .imgpanel img { width:100%; height:100%; object-fit:cover; object-position:top; display:block; }
+    .col { padding:28px 30px; }
+    .col + .col { border-left:1px solid #ddeaea; }
+    .bglt { background:var(--ltgray); }
+    .hdr { background:linear-gradient(135deg,var(--teal),var(--teal-d)); color:#fff; padding:26px 40px; text-align:center; }
+    .hdr.org { background:linear-gradient(135deg,var(--org),#B85A0A); }
+    .hdr h2 { font-size:1.7rem; font-weight:900; margin-bottom:4px; }
+    .hdr p  { opacity:.85; font-size:.88rem; }
+
+    /* ?? Bilingual Block ?? */
+    .bi {
+      border-radius:12px; overflow:hidden;
+      border:1.5px solid #dde8e8;
+      margin-bottom:12px;
+    }
+    .bi-label {
+      font-size:.68rem; font-weight:700; letter-spacing:2px;
+      padding:5px 12px; background:#f0f0f0; color:#555;
+      border-bottom:1px solid #e0e0e0;
+    }
+    .bi-jp {
+      padding:10px 14px;
+      background:var(--jp-l);
+      border-left:4px solid var(--jp);
+      font-family:'Noto Sans JP',sans-serif;
+      font-size:.88rem; font-weight:700; line-height:1.7; color:#2d1010;
+    }
+    .bi-jp .flag { font-size:.7rem; opacity:.6; margin-right:4px; }
+    .bi-zh {
+      padding:10px 14px;
+      background:var(--zh-l);
+      border-left:4px solid var(--zh);
+      border-top:1px dashed #c8d8f0;
+      font-size:.88rem; font-weight:700; line-height:1.7; color:#0d1e3a;
+    }
+    .bi-zh .flag { font-size:.7rem; opacity:.6; margin-right:4px; }
+    /* small text within bi */
+    .bi-jp .sm, .bi-zh .sm { font-size:.72rem; font-weight:400; display:block; margin-top:3px; opacity:.7; line-height:1.6; }
+    .bi-jp .big { font-size:1.4rem; font-weight:900; display:block; line-height:1.2; }
+    .bi-zh .big { font-size:1.4rem; font-weight:900; display:block; line-height:1.2; }
+    .bi-jp .med { font-size:1.05rem; font-weight:900; }
+    .bi-zh .med { font-size:1.05rem; font-weight:900; }
+
+    /* compliance note */
+    .comply {
+      font-size:.68rem; color:var(--zh); background:#E8F0FF;
+      border-left:3px solid var(--zh); padding:5px 10px;
+      border-radius:0 6px 6px 0; margin:4px 0 8px;
+      line-height:1.6;
+    }
+
+    /* 瘜券? (footer note) */
+    .footnote {
+      font-size:.68rem; color:var(--note-c); line-height:1.8;
+      padding:12px 32px; background:#f5fafa; border-top:1px solid #ddeaea;
+    }
+    .footnote .jp-fn { color:#8B1A1A; display:block; }
+    .footnote .zh-fn { color:#1565C0; display:block; margin-top:2px; }
+
+    /* chip */
+    .chip {
+      display:inline-block; font-size:.75rem; font-weight:700;
+      padding:2px 10px; border-radius:100px; margin:2px;
+    }
+    .chip.t { background:var(--teal-l); color:var(--teal-d); border:1px solid var(--teal); }
+    .chip.o { background:var(--org-l); color:#7B3000; border:1px solid var(--org); }
+    .chip.g { background:#eee; color:#444; border:1px solid #bbb; }
+
+    /* step badge */
+    .sbadge {
+      display:inline-block; font-family:'Outfit',sans-serif;
+      font-weight:900; font-size:.7rem; letter-spacing:1.5px;
+      padding:2px 10px; border-radius:100px; margin-bottom:4px;
+    }
+    .sbadge.t { background:var(--teal); color:#fff; }
+    .sbadge.o { background:var(--org);  color:#fff; }
+
+    /* pyramid */
+    .pyr { display:flex; gap:10px; align-items:stretch; margin-bottom:10px; }
+    .pyr-lbl { width:60px; flex-shrink:0; font-size:.68rem; font-weight:700; color:#777; text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px; }
+    .pyr-lbl span { font-size:1.3rem; }
+    .pyr-c { flex:1; border-radius:10px; padding:11px 14px; }
+    .pyr-c.tp { background:#FFF4E0; border:1.5px solid #FFD060; }
+    .pyr-c.md { background:#EDF9F4; border:1.5px solid #6DC0A0; }
+    .pyr-c.bs { background:#FCF0DC; border:1.5px solid #C08840; }
+    .pyr-inner-lbl { font-size:.65rem; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#888; margin-bottom:4px; }
+    .pyr-jp { font-size:.82rem; font-weight:700; color:#2d1010; font-family:'Noto Sans JP',sans-serif; margin-bottom:4px; }
+    .pyr-zh { font-size:.82rem; font-weight:700; color:#0d1e3a; }
+
+    /* 5-free */
+    .free5 { display:grid; grid-template-columns:repeat(5,1fr); gap:12px; padding:24px 36px; background:var(--ltgray); }
+    .fitem { background:#fff; border-radius:12px; padding:16px 10px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,.05); border:1.5px solid #ddeaea; }
+    .fitem .ico { font-size:1.8rem; display:block; margin-bottom:6px; }
+    .fitem .fjp { font-size:.82rem; font-weight:900; color:#8B1A1A; margin-bottom:3px; font-family:'Noto Sans JP',sans-serif; }
+    .fitem .fzh { font-size:.82rem; font-weight:900; color:#1565C0; }
+    .fitem .fsub { font-size:.67rem; color:#888; margin-top:2px; }
+
+    /* step card (3-step) */
+    .scard { background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 2px 10px rgba(0,0,0,.06); }
+    .shdr  { padding:12px 16px; color:#fff; display:flex; align-items:center; gap:10px; }
+    .shdr .sn2 { font-family:'Outfit',sans-serif; font-size:1.7rem; font-weight:900; opacity:.6; line-height:1; }
+    .shdr .st2 { font-size:.88rem; font-weight:900; }
+    .shdr .ss2 { font-size:.67rem; opacity:.8; }
+    .sbody { padding:14px 16px; }
+    .sli { display:flex; gap:6px; margin-bottom:8px; font-size:.8rem; line-height:1.5; }
+    .sli::before { content:"??; flex-shrink:0; margin-top:1px; }
+    .sli.jp-li::before { color:var(--jp); }
+    .sli.zh-li::before { color:var(--zh); }
+    .sli.tl-li::before { color:var(--teal); }
+    .sli.og-li::before { color:var(--org); }
+    .sli.dk-li::before { color:var(--teal-d); }
+    .sbody .lang-tag { font-size:.62rem; font-weight:700; letter-spacing:1.5px; padding:1px 6px; border-radius:4px; margin-bottom:3px; display:inline-block; }
+    .sbody .lang-jp-tag { background:var(--jp-l); color:var(--jp); }
+    .sbody .lang-zh-tag { background:var(--zh-l); color:var(--zh); }
+
+    /* price */
+    .price { font-family:'Outfit',sans-serif; font-size:2.6rem; font-weight:900; color:var(--org); }
+    .tag-box { display:inline-flex; align-items:center; border:2px solid var(--org); border-radius:7px; padding:3px 10px; font-weight:700; font-size:.82rem; }
+
+    /* dark panel */
+    .dark-col { background:linear-gradient(160deg,#005850,#002E2A); color:#fff; }
+
+    /* divider */
+    .dashed-top { border-top:2px dashed rgba(0,167,157,.25); margin-top:4px; }
+
+    @media(max-width:860px){
+      .split2,.split3{grid-template-columns:1fr;}
+      .free5{grid-template-columns:repeat(2,1fr);}
+      #dots{display:none;}
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="logo">UNU</div>
+  <div class="info" id="ctr">1 / 12<br><span style="font-size:.65rem;opacity:.5;">?? ?交??? 嚗??? 撱???芸??葉??/span></div>
+  <div class="btns">
+    <button id="prev" onclick="go(-1)">??銝???/button>
+    <button id="next" onclick="go(+1)">銝?????/button>
+  </div>
+</nav>
+
+<!-- DOTS -->
+<div id="dots"></div>
+
+<!-- STAGE -->
+<main id="stage">
+
+
+<!-- ??????????????????????????????????????????????????
+     SLIDE 01 ? ?～?喋??詻?Ｕ mv.jpg
+?????????????????????????????????????????????????? -->
+<section class="slide on" id="s01">
+  <div class="slabel"><span class="sn">SLIDE 01</span><span class="st">?～?喋??詻?Ｕ嚗v.jpg嚗?/span></div>
+  <div class="card">
+    <div class="split2">
+      <div class="imgpanel" style="min-height:580px;">
+        <img src="https://d2w53g1q050m78.cloudfront.net/cosmecollegecom/uploads/unu/unu-smptrtm-glsy/img/mv.jpg" alt="mv.jpg" />
+      </div>
+      <div class="col bglt" style="overflow-y:auto;max-height:580px;">
+
+        <div class="bi">
+          <div class="bi-label">????喋???/div>
+          <div class="bi-jp"><span class="flag">??</span>UNU</div>
+          <div class="bi-zh"><span class="flag">??</span>UNU</div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">???～?喋?????嚗??嚗?</div>
+          <div class="bi-jp"><span class="flag">??</span><span class="big">??～?詻???嚗?/span><span class="sm">??</span></div>
+          <div class="bi-zh"><span class="flag">??</span><span class="big">????擃株釭嚗?/span><span class="sm">??</span></div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">???耦?准???准??/div>
+          <div class="bi-jp"><span class="flag">??</span>???????啜???/div>
+          <div class="bi-zh"><span class="flag">??</span>隞乩??芸楛?撘??湔?芣?</div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">???萸??喋??潘?銝?</div>
+          <div class="bi-jp"><span class="flag">??</span>??潦??～???/div>
+          <div class="bi-zh"><span class="flag">??</span>敹?雿?芸楛?芾悸</div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">???～?喋?嚗之嚗?/div>
+          <div class="bi-jp"><span class="flag">??</span><span class="big">?具??擃芥</span></div>
+          <div class="bi-zh"><span class="flag">??</span><span class="big">??蝯脣?瞉斤?擃?/span></div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">??鋆賢????准??/div>
+          <div class="bi-jp"><span class="flag">??</span>UNU ?艾???啜???br>?瑯?喋??潘????潦??～??/div>
+          <div class="bi-zh"><span class="flag">??</span>UNU 霅瑁鈭格黎蝟餃?<br>瘣垣蝎橘?霅琿垣蝝?/div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">??4?扎?寥?Ｕ?喋?押???/div>
+          <div class="bi-jp"><span class="flag">??</span>???～?詻?Ｕ嚗?豢???靽栽?<br>?准?潦????怨?靽柴嚗?怒?潦?潦?</div>
+          <div class="bi-zh"><span class="flag">??</span>擃??風?嚗?豢??扯風??<br>閫釭撅方風?嚗霅瑁蝬剜?</div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">??瘜券?嚗?銝嚗?/div>
+          <div class="bi-jp"><span class="flag">??</span><span class="sm" style="opacity:1;">?????～?詻?Ｕ??准???阡囿????<br>?? ?瑯??囿????怨?靽柴?????/span></div>
+          <div class="bi-zh"><span class="flag">??</span><span class="sm" style="opacity:1;">????擃漲??擃株釭?脰?霅瑞?嚗蝙擃桃結??湧????br>?? ????擃桃結?脰??豢??扯風??/span></div>
+        </div>
+
+        <div class="comply">?儭???隤芣?嚗?靽柴?箝風???踹?摰?迂?怎??找耨敺拇??賬?/div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ??????????????????????????????????????????????????
+     SLIDE 02 ? 鋆賢??怒???cv_cv_bg.jpg
+?????????????????????????????????????????????????? -->
+<section class="slide" id="s02">
+  <div class="slabel"><span class="sn">SLIDE 02</span><span class="st">鋆賢??怒??潘?cv_cv_bg.jpg嚗?/span></div>
+  <div class="card">
+    <div class="split2">
+      <div class="imgpanel" style="min-height:520px;">
+        <img src="https://d2w53g1q050m78.cloudfront.net/cosmecollegecom/uploads/unu/unu-smptrtm-glsy/img/cv/cv_bg.jpg" alt="cv_cv_bg.jpg" />
+      </div>
+      <div class="col bglt" style="display:flex;flex-direction:column;justify-content:center;gap:12px;">
+
+        <div class="bi">
+          <div class="bi-label">??鋆賢??瑯?潦??憭改?</div>
+          <div class="bi-jp"><span class="flag">??</span><span class="med">?艾???啜???/span></div>
+          <div class="bi-zh"><span class="flag">??</span><span class="med">霅瑁鈭格黎蝟餃?</span></div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">??鋆賢??怒??氬嚗葛嚗?/div>
+          <div class="bi-jp"><span class="flag">??</span><span class="med">?瑯?喋???嚗????潦??～??/span></div>
+          <div class="bi-zh"><span class="flag">??</span><span class="med">瘣垣蝎?嚗?霅琿垣蝝?/span></div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">??擐?嚗虜???賂?</div>
+          <div class="bi-jp"><span class="flag">??</span>??潘???艾?瑯?研?桅???/div>
+          <div class="bi-zh"><span class="flag">??</span>璇典?嚗?蝟?瘞?/div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">?????颱鴃??/div>
+          <div class="bi-jp"><span class="flag">??</span>
+            <span style="display:inline-flex;align-items:center;gap:8px;">
+              <span class="tag-box">???⊥?</span>
+              <span class="price">3,080??/span><span style="font-size:.8rem;">(蝔噯)</span>
+            </span>
+          </div>
+          <div class="bi-zh"><span class="flag">??</span>
+            <span style="display:inline-flex;align-items:center;gap:8px;">
+              <span class="tag-box">蝯???(??鞎?</span>
+              <span class="price">1,100??/span><span style="font-size:.8rem;">(?怎?)</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">????靘⊥嚗??具??潘?</div>
+          <div class="bi-jp"><span class="flag">??</span>?? ??,540??蝔噯嚗?/div>
+          <div class="bi-zh"><span class="flag">??</span>?桀? ??550 ???怎?嚗?/div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ??????????????????????????????????????????????????
+     SLIDE 03 ? ???芣?怒?嫘??img_04.jpg
+?????????????????????????????????????????????????? -->
+<section class="slide" id="s03">
+  <div class="slabel"><span class="sn">SLIDE 03</span><span class="st">???芣?怒?嫘?∴?img_04.jpg嚗?/span></div>
+  <div class="card">
+    <div class="split2">
+      <div class="imgpanel" style="min-height:580px;">
+        <img src="https://d2w53g1q050m78.cloudfront.net/cosmecollegecom/uploads/unu/unu-smptrtm-glsy/img/img_04.jpg" alt="img_04.jpg" />
+      </div>
+      <div class="col bglt" style="display:flex;flex-direction:column;justify-content:center;gap:12px;">
+
+        <div class="bi">
+          <div class="bi-label">???颯?瑯?喋?堆????賂?</div>
+          <div class="bi-jp"><span class="flag">??</span>???芣?怒?嫘??/div>
+          <div class="bi-zh"><span class="flag">??</span>?桀擃桃結?唳嚗??曉??嚗?/div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">?????芥??4?</div>
+          <div class="bi-jp"><span class="flag">??</span>
+            ??擃芥??～?詻??脰???鞎??芥?<br>
+            ??擃芥????<br>
+            ??瘚柴?瘥??瘥?憭?<br>
+            ??擃芥????颯????          </div>
+          <div class="bi-zh"><span class="flag">??</span>
+            ??擃桃結???湧?嚗??祈風???<br>
+            ???剝垣暺舀楚?∪?嚗閬予雿踹???<br>
+            ??瞈除銝靘停瘥?嚗筑瘥隞交??<br>
+            ??擃桀偏銋曄蝟曄?嚗孛??蝟末?輸?嚗?          </div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">??UNU ?准???喋???/div>
+          <div class="bi-jp"><span class="flag">??</span>UNU ?????衣??Ｕ<br>擃芥??～?詻?Ｕ?嚗?/div>
+          <div class="bi-zh"><span class="flag">??</span>UNU ?典振憭?霅瑞?蝑嚗?br>蝎暹????擃株釭嚗?/div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">???萸??喋??潘??踴嚗??剁?</div>
+          <div class="bi-jp"><span class="flag">??</span>?豢??鋆耨?????<br>
+            <span class="chip g">??～??/span><span class="chip g">瘚柴?瘥?/span><span class="chip g">??扎?</span><br>?怒??潦?嚗?          </div>
+          <div class="bi-zh"><span class="flag">??</span>?豢??扯風??蝎暹???<br>
+            <span class="chip t">??</span><span class="chip t">瘚格?</span><span class="chip t">銋暹?</span><br>銝之??嚗?Ｙ??湛?
+          </div>
+        </div>
+
+        <div class="comply">?儭???隤芣?嚗??典誨???瑁店銵??曈湛?銝衣雁?鈭???嚗?摰?迂????雿輻靽桀儔摮嚗?/div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ??????????????????????????????????????????????????
+     SLIDE 04 ? ?豢???靽柴?嫘???璁? img_01.jpg 銝?
+?????????????????????????????????????????????????? -->
+<section class="slide" id="s04">
+  <div class="slabel"><span class="sn">SLIDE 04</span><span class="st">?豢???靽柴?嫘???璁?嚗mg_01.jpg 銝?嚗?/span></div>
+  <div class="card">
+    <div class="split2">
+      <div class="imgpanel" style="min-height:560px;">
+        <img src="https://d2w53g1q050m78.cloudfront.net/cosmecollegecom/uploads/unu/unu-smptrtm-glsy/img/img_01.jpg" alt="img_01.jpg" />
+      </div>
+      <div class="col bglt" style="overflow-y:auto;max-height:560px;">
+
+        <div class="bi">
+          <div class="bi-label">???颯?瑯?喋?扎??恬?憭改?</div>
+          <div class="bi-jp"><span class="flag">??</span><span class="big">?豢???br>鋆耨?瑯??</span></div>
+          <div class="bi-zh"><span class="flag">??</span><span class="big">?豢???br>霅瑞?蝟餌絞</span></div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">???萸?隤祆???/div>
+          <div class="bi-jp"><span class="flag">??</span>??～?賊???豢?鋆耨??br>????擃芥??准??/div>
+          <div class="bi-zh"><span class="flag">??</span>?????其?蝎暹?霅瑞?嚗?br>?典予?雁????黎</div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">??Step1 ???賂?閬??/div>
+          <div class="bi-jp"><span class="flag">??</span><span class="sbadge o">Step1</span>?擃芸??具?鋆耨??</div>
+          <div class="bi-zh"><span class="flag">??</span><span class="sbadge o">Step1</span>?瘛勗霅瑞?擃桃結?折</div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">??Step1 ????蝺葛嚗?/div>
+          <div class="bi-jp"><span class="flag">??</span><span class="med">?晞????胯??<sup>??</sup></span></div>
+          <div class="bi-zh"><span class="flag">??</span><span class="med">閫??賣毽????sup>??</sup></span></div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">??Step1 隤祆???/div>
+          <div class="bi-jp"><span class="flag">??</span>7蝔柴?晞?<sup>??</sup>??擃芸??具<br>蝛箸??典???鋆耨</div>
+          <div class="bi-zh"><span class="flag">??</span>7蝔株??<sup>??</sup>蝎暹??賊?嚗?br>?葉憛怨?擃桃結?折?征瘣雿?/div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">??Step2 ???賂?閬??/div>
+          <div class="bi-jp"><span class="flag">??</span><span class="sbadge t">Step2</span>?擃芸??具????/div>
+          <div class="bi-zh"><span class="flag">??</span><span class="sbadge t">Step2</span>?摰???霅瑞???</div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">??Step2 ????蝺葛嚗?/div>
+          <div class="bi-jp"><span class="flag">??</span><span class="med">??潦???舀???sup>??</sup></span></div>
+          <div class="bi-zh"><span class="flag">??</span><span class="med">瘞??????<sup>??</sup></span></div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">??Step2 隤祆???/div>
+          <div class="bi-jp"><span class="flag">??</span>瘥囿鋆耨??<sup>??</sup>?扳??????<br>????扼????????</div>
+          <div class="bi-zh"><span class="flag">??</span>瘞???砍??游?閬歇?‵?風擃格???sup>??</sup>嚗?br>?瑟???霅瑞?蝎曇</div>
+        </div>
+
+      </div>
+    </div>
+    <div class="footnote">
+      <span class="jp-fn">?? ?? ?偌?圾?晞?(蝢?)(????0,000/1,000/400)??瘞游?閫??押????怒??扎)??瘞游?閫??潦?准?潦????怒?喋??胯?艾?詻?????准???偌?圾?晞?(蝢?)?憶碟憶箝?Ｕ??艾????准?瑯??准??怠?瘞游?閫??押???蝢?)??? ?Ｕ?柴?硼a?嚗??Ｕ?扎?舫??鋆耨?瑯???具??艾???潦?-帤-?押?????/span>
+      <span class="zh-fn">?? ?? ?偌?圾閫??踝?蝢?嚗?摮?30,000/1,000/400嚗?瘞游?閫???嚗?隞蝐喟撅梁?嚗?瘞游?閫??瘥?鞈芾??賬?獢鈭?箇墨銝?偌?圾閫??踝?蝢?嚗什瘝孵鈭?箇墨銝?偌?圾閫??踝?蝢?嚗?? 瘚瑁?賊??嚗風擃格硃隞亦憭瘜⊿扇-帤-?折雿?豢??扯風?頂蝯望?????/span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ??????????????????????????????????????????????????
+     SLIDE 05 ? ?豢???靽柴?嫘???閰喟敦 img_05.jpg
+?????????????????????????????????????????????????? -->
+<section class="slide" id="s05">
+  <div class="slabel"><span class="sn">SLIDE 05</span><span class="st">?豢???靽柴?嫘???閰喟敦嚗mg_05.jpg嚗?/span></div>
+  <div class="card">
+    <div class="split2">
+      <div class="imgpanel" style="min-height:620px;">
+        <img src="https://d2w53g1q050m78.cloudfront.net/cosmecollegecom/uploads/unu/unu-smptrtm-glsy/img/img_05.jpg" alt="img_05.jpg" />
+      </div>
+      <div class="col bglt" style="overflow-y:auto;max-height:620px;">
+
+        <div class="bi">
+          <div class="bi-label">???颯?瑯?喋?扎???/div>
+          <div class="bi-jp"><span class="flag">??</span><span class="med">?豢???靽柴?嫘???sup>??</sup></span></div>
+          <div class="bi-zh"><span class="flag">??</span><span class="med">?豢??扯風?頂蝯?sup>??</sup></span></div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">???萸??踴?</div>
+          <div class="bi-jp"><span class="flag">??</span>?脰?????～?詻?<br>??靽柴???2畾菟?瞈??晞</div>
+          <div class="bi-zh"><span class="flag">??</span>???????垣蝯莎?<br>?∠?風??偌???挾瞈?靽株風</div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">??2?葛閬??????/div>
+          <div class="bi-jp"><span class="flag">??</span>嚗潮囿???靽殷??嚗潮囿??怎???嚗?br><span class="chip g">?晞????胯??<sup>??</sup></span> ? <span class="chip g">??潦???舀???sup>??</sup></span></div>
+          <div class="bi-zh"><span class="flag">??</span>嚗潭楛?亥風?垣蝯脣?剁??嚗澆?蝢?雿風?移?荔?<br><span class="chip t">閫??賣毽????sup>??</sup></span> ? <span class="chip t">瘞??????<sup>??</sup></span></div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">??STEP 01 閬??/div>
+          <div class="bi-jp"><span class="flag">??</span><span class="sbadge o">STEP 01</span>??晞????胯??<sup>??</sup></div>
+          <div class="bi-zh"><span class="flag">??</span><span class="sbadge o">STEP 01</span>?閫??賣毽????sup>??</sup></div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">??STEP 01 隤祆???/div>
+          <div class="bi-jp"><span class="flag">??</span>????啜??蝔柴?晞?<sup>??</sup>???扼??～?詻??脰???擃芸??具蝛箸?????貊?鋆耨</div>
+          <div class="bi-zh"><span class="flag">??</span>?湧7蝔桐???摮????<sup>??</sup>嚗移皞???垣蝯脣?函?蝛箸??雿?蝯虫???葉?風??/div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">??STEP 02 撌血隤祆???/div>
+          <div class="bi-jp"><span class="flag">??</span>??潦???舀???sup>??</sup>??擃芾?靽格???sup>??</sup>?扳???????颲潦?????????具?擃芣?蝬?/div>
+          <div class="bi-zh"><span class="flag">??</span>瘞??????<sup>??</sup>摰??撌脣?憛怨風擃桃移??sup>??</sup>?雿??Ｗ??瘞游???擗??典予?雁??蝯脰???孛??/div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">??STEP 02 閬??/div>
+          <div class="bi-jp"><span class="flag">??</span><span class="sbadge t">STEP 02</span>???潦???舀???sup>??</sup></div>
+          <div class="bi-zh"><span class="flag">??</span><span class="sbadge t">STEP 02</span>?瘞??????<sup>??</sup></div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">??Point ?嫘??箝? 閬??/div>
+          <div class="bi-jp"><span class="flag">??</span>?瑯?喋??潦??潦??～?<br>銝??雿踴??柴??芥?嫘嚗?/div>
+          <div class="bi-zh"><span class="flag">??</span>?刻?剝??頂??霅瑞???<br>???湧＊??</div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">??Point ?嫘??箝? ?祆?</div>
+          <div class="bi-jp"><span class="flag">??</span>雿踴???怠??????潦?????～?詻????P</div>
+          <div class="bi-zh"><span class="flag">??</span>靘甇?Ⅱ??雿輻嚗?霅瑞????冽?雿單?璈?桐??剁?憭批??????其??風?移皞漲嚗?/div>
+        </div>
+
+      </div>
+    </div>
+    <div class="footnote">
+      <span class="jp-fn">?? ?? ?瑯??囿????怨?靽柴????具?? ?偌?圾?晞?(蝢?)(????0,000/1,000/400)??瘞游?閫??押????怒??扎)??瘞游?閫??潦?准?潦????怒?喋??胯?艾?詻?????准???偌?圾?晞?(蝢?)?憶碟憶箝?Ｕ??艾????准?瑯??准??怠?瘞游?閫??押???蝢?)??? ?Ｕ?柴?硼a</span>
+      <span class="zh-fn">?? ?? ????擃桃結?脰??豢??扯風??? ?偌?圾閫??踝?蝢?嚗?摮?30,000/1,000/400嚗?瘞游?閫???嚗?隞蝐喟撅梁?嚗?瘞游?閫??瘥?鞈芾??賬?獢鈭?箇墨銝?偌?圾閫??踝?蝢?嚗什瘝孵鈭?箇墨銝?偌?圾閫??踝?蝢?嚗?? 瘚瑁?賊?</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ??????????????????????????????????????????????????
+     SLIDE 06 ? W?准?潦????怨?靽?img_01.jpg銝?嚗mg_06.jpg嚗mg_02.jpg
+?????????????????????????????????????????????????? -->
+<section class="slide" id="s06">
+  <div class="slabel"><span class="sn">SLIDE 06</span><span class="st">W?准?潦????怨?靽殷?img_01.jpg銝? 嚗?img_06.jpg 嚗?img_02.jpg嚗?/span></div>
+  <div class="card">
+
+    <!-- img_01.jpg 銝撣?-->
+    <div style="background:var(--teal);padding:16px 36px;">
+      <div class="bi" style="border-color:rgba(255,255,255,.3);">
+        <div class="bi-label" style="background:rgba(255,255,255,.15);color:rgba(255,255,255,.7);">img_01.jpg 銝撣胯?</div>
+        <div class="bi-jp" style="background:rgba(139,26,26,.25);border-color:#ff9999;color:#fff;"><span class="flag">??</span><span class="med">W?柴?乓??胯鋆耨??<sup>??/sup></span><br>??～?詻??脯???乓??胯??靽柴???????????????Ｘ??賬??准??/div>
+        <div class="bi-zh" style="background:rgba(21,101,192,.25);border-color:#80b3ff;color:#fff;"><span class="flag">??</span><span class="med">W閫釭撅方風????sup>??/sup></span><br>蝎暹?霅瑞???閫釭撅歹?瘜典皛踵遛瘞游???瞉歹???撘瑕?擃桃結靽風撅?</div>
+      </div>
+    </div>
+
+    <!-- img_06.jpg -->
+    <div class="split2">
+      <div class="imgpanel" style="min-height:540px;">
+        <img src="https://d2w53g1q050m78.cloudfront.net/cosmecollegecom/uploads/unu/unu-smptrtm-glsy/img/img_06.jpg" alt="img_06.jpg" />
+      </div>
+      <div class="col bglt" style="overflow-y:auto;max-height:540px;">
+
+        <div class="bi">
+          <div class="bi-label">???颯?瑯?喋?扎??恬?憭改?</div>
+          <div class="bi-jp"><span class="flag">??</span><span class="med">W?柴?乓??胯鋆耨??<sup>??/sup>??br>?Ｕ?氬?????囿?艾</span></div>
+          <div class="bi-zh"><span class="flag">??</span><span class="med">W閫釭撅方風????sup>??/sup>嚗?br>?”?Ｗ像?氬撣園??????擃栽</span></div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">??隤祆???銝?</div>
+          <div class="bi-jp"><span class="flag">??</span>???～?賊??准?潦????怒?鋆耨??擃芥?????具??扎?銝??芥??囿?祆?柴??芥璈??潦????/div>
+          <div class="bi-zh"><span class="flag">??</span>??擃漲???其???鞈芸惜?脰?瘛勗漲霅瑞?嚗擃桃結瘜典鞊?瘞湔膜??澆?瞉歹???蝬剜?擃桃結????霅瑕??賬?/div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">????～?貉狀??????</div>
+          <div class="bi-jp"><span class="flag">??</span>??～?賊脰??怒???乓??胯???????銝??擃芥????瘚??箝???閫艾?????/div>
+          <div class="bi-zh"><span class="flag">??</span>?刻?????嚗?鞈芸惜?蝧寡絲嚗??湧垣蝯脫偌??擗?敹恍?憭梧???銋???敺?蝟嗾瞉??/div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">?????押??恬?銝剖亢嚗?/div>
+          <div class="bi-jp"><span class="flag">??</span>??瘥囿鋆耨??</div>
+          <div class="bi-zh"><span class="flag">??</span>??霅琿垣??</div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">??????嚗???</div>
+          <div class="bi-jp"><span class="flag">??</span>?颯??Ｕ???具??怒?具????胯???br>?偌?圾?具??踴?</div>
+          <div class="bi-zh"><span class="flag">??</span>蝖祈??啗銋鈭??函???br>?偌?圾鞊??</div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">?????嚗???</div>
+          <div class="bi-jp"><span class="flag">??</span>?颯??Ｕ???具??怒?具????br>?偌?圾?喋?踴?</div>
+          <div class="bi-zh"><span class="flag">??</span>蝖祈??啗銋鈭???br>?偌?圾蝐唾???/div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">????隤祆?嚗 敺?</div>
+          <div class="bi-jp"><span class="flag">??</span>?准?潦????怒隡潦?瑽?????扼??????靽?/div>
+          <div class="bi-zh"><span class="flag">??</span>隞亦?瑽?隡潸?鞈芸惜????蝯虫???票??銝剛風??/div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">??蝯??喋??潘???敺?</div>
+          <div class="bi-jp"><span class="flag">??</span>擃芾”?Ｕ??氬???扼??方??????恍囿?祆?柴??芥璈????嚗?/div>
+          <div class="bi-zh"><span class="flag">??</span>擃桃結銵券?Ｗ儔撟單嚗?嗆?撠蕙鈭箏?瞉歹??湔??拇??擃桃結?祈澈??霅瑕?嚗?/div>
+        </div>
+
+      </div>
+    </div>
+    <div class="footnote">
+      <span class="jp-fn">?? ???颯??Ｕ???具??怒?具????胯??怠?瘞游?閫??喋??艾?喋??胯??押????詻???艾??偌?圾?喋?踴?嚗?艾????颯??芥??喋??颯??Ｕ??怒?柴嚗?/span>
+      <span class="zh-fn">?? ??蝖祈??啗銋鈭??函??臬?瘞游?閫??鞊??賬′??箔??箔?銋?偌?圾蝐唾??踝??函頂????擃桃移?餉風擃桃??餉風擃桐像嚗?/span>
+    </div>
+
+    <!-- img_02.jpg -->
+    <div class="dashed-top">
+      <div class="split2">
+        <div class="imgpanel" style="min-height:380px;">
+          <img src="https://d2w53g1q050m78.cloudfront.net/cosmecollegecom/uploads/unu/unu-smptrtm-glsy/img/img_02.jpg" alt="img_02.jpg" />
+        </div>
+        <div class="col bglt" style="display:flex;flex-direction:column;justify-content:center;gap:12px;">
+          <div class="bi">
+            <div class="bi-label">img_02.jpg ? 蝮血葛?～?喋?</div>
+            <div class="bi-jp"><span class="flag">??</span><span class="big">??～?詻銋曄?怨????br>?具??擃芥??准??</span></div>
+            <div class="bi-zh"><span class="flag">??</span><span class="big">?⊥???嗾?交??堆?<br>?典予?雁??蝯脩??祉???黎嚗?/span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ??????????????????????????????????????????????????
+     SLIDE 07 ? 擐? img_03.jpg
+?????????????????????????????????????????????????? -->
+<section class="slide" id="s07">
+  <div class="slabel"><span class="sn">SLIDE 07</span><span class="st">擐?蝝嫣?嚗mg_03.jpg嚗?/span></div>
+  <div class="card">
+    <div class="split2">
+      <div class="imgpanel" style="min-height:600px;">
+        <img src="https://d2w53g1q050m78.cloudfront.net/cosmecollegecom/uploads/unu/unu-smptrtm-glsy/img/img_03.jpg" alt="img_03.jpg" />
+      </div>
+      <div class="col bglt" style="overflow-y:auto;max-height:600px;">
+
+        <div class="bi">
+          <div class="bi-label">????◢?喋??潘?銝?</div>
+          <div class="bi-jp"><span class="flag">??</span>敹????/div>
+          <div class="bi-zh"><span class="flag">??</span>隞支犖敹???????/div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">??擐???憭改?</div>
+          <div class="bi-jp"><span class="flag">??</span><span class="big">??潘?<br>??艾?瑯?研?桅???/span></div>
+          <div class="bi-zh"><span class="flag">??</span><span class="big">璇典?嚗?蝟?br>敺桃?隤?擐?</span></div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">??擐?隤祆???/div>
+          <div class="bi-jp"><span class="flag">??</span>????具????Ｕ?具??研??瑯?芥?瑯?怒楛?踴????艾?瑯?研?桃?????嫘??悅???折????柴????擐???/div>
+          <div class="bi-zh"><span class="flag">??</span>皜璇典??凝?賊?????擐?摰???瘛梢?暺??澈????鈭斤??箏惜甈∟?撖誘鈭粹隞交???餈瑚犖擐???/div>
+        </div>
+
+        <!-- 擐??????-->
+        <div class="pyr">
+          <div class="pyr-lbl"><span>??</span><span>????br>Top</span></div>
+          <div class="pyr-c tp">
+            <div class="pyr-inner-lbl">Top Note</div>
+            <div class="pyr-jp">??潦??怒?Ｕ????潦????芥??瑯??潦????芥??/div>
+            <div class="pyr-zh">璇典??????偌??????????蝬?望?</div>
+          </div>
+        </div>
+
+        <div class="pyr">
+          <div class="pyr-lbl"><span>?</span><span>????br>Heart</span></div>
+          <div class="pyr-c md">
+            <div class="pyr-inner-lbl">Heart Note</div>
+            <div class="pyr-jp">?研???Ｕ?????押?扎?喋??怒?芥???乓??潦???芥??潦????准??怒???</div>
+            <div class="pyr-zh">璇??晞????准????准?啜?????晞?暸?</div>
+          </div>
+        </div>
+
+        <div class="pyr">
+          <div class="pyr-lbl"><span>?</span><span>???br>Base</span></div>
+          <div class="pyr-c bs">
+            <div class="pyr-inner-lbl">Base Note</div>
+            <div class="pyr-jp">??艾?瑯?研???嫘??喋??潦?喋??怒??????芥?????喋??喋?芥</div>
+            <div class="pyr-zh">暺???擐???擐?誨?輸???????雀撠暹</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ??????????????????????????????????????????????????
+     SLIDE 08 ? Favorite 1 ?怒?潦?潦? / Favorite 2 ???  favorite_01.jpg
+?????????????????????????????????????????????????? -->
+<section class="slide" id="s08">
+  <div class="slabel"><span class="sn">SLIDE 08</span><span class="st">Favorite 1??嚗avorite_01.jpg嚗?/span></div>
+  <div class="card">
+    <div class="hdr org">
+      <div class="bi" style="margin:0;border-color:rgba(255,255,255,.3);max-width:700px;margin:0 auto;">
+        <div class="bi-label" style="background:rgba(255,255,255,.15);color:rgba(255,255,255,.7);">?颯?瑯?喳??准?扎???/div>
+        <div class="bi-jp" style="background:rgba(139,26,26,.25);border-color:#ffa0a0;color:#fff;"><span class="flag">??</span>???怒???研?准??瑯?柴??????/div>
+        <div class="bi-zh" style="background:rgba(21,101,192,.25);border-color:#80b3ff;color:#fff;"><span class="flag">??</span>UNU 霅瑁鈭格黎蝟餃??摰園???/div>
+      </div>
+    </div>
+
+    <div class="split2">
+      <div class="imgpanel" style="min-height:640px;">
+        <img src="https://d2w53g1q050m78.cloudfront.net/cosmecollegecom/uploads/unu/unu-smptrtm-glsy/img/favorite_01.jpg" alt="favorite_01.jpg" />
+      </div>
+      <div class="col bglt" style="overflow-y:auto;max-height:640px;">
+
+        <!-- Fav 1 -->
+        <div style="background:rgba(244,123,32,.1);border-radius:8px;padding:6px 10px;margin-bottom:8px;font-size:.72rem;font-weight:700;color:var(--org);">??Favorite 1</div>
+
+        <div class="bi">
+          <div class="bi-label">??Fav1 閬??撣荔?</div>
+          <div class="bi-jp"><span class="flag">??</span><span class="med">?怒?潦?潦?</span></div>
+          <div class="bi-zh"><span class="flag">??</span><span class="med">霅瑁?</span></div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">??Fav1 隤祆???/div>
+          <div class="bi-jp"><span class="flag">??</span>擃芥?剔??????????PPT蝟餅?瘚???sup>??</sup>+?Ｕ??蝟餅?瘚???sup>??</sup>??具?銴芾????sup>??</sup>??/div>
+          <div class="bi-zh"><span class="flag">??</span>?湧皞怠?瘣楊?剔?垣蝯脩?PPT蝟餅?瘛冽???sup>??</sup>??粹蝟餅?瘛冽???sup>??</sup>嚗??鼠?拇??嗆?敺云??sup>??</sup>??/div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">??Fav1 ???押???/div>
+          <div class="bi-jp"><span class="flag">??</span>?怒?潦?潦???</div>
+          <div class="bi-zh"><span class="flag">??</span>霅瑁??</div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">??Fav1 ??3蝔殷??餃??Ｕ?喋隞?嚗?/div>
+          <div class="bi-jp"><span class="flag">??</span><span class="chip g">?芥?湧?詻?賬??芥</span><span class="chip g">?偌?圾瘞湔溶??<sup>??</sup></span><span class="chip g">??芥?扎<sup>??</sup></span></div>
+          <div class="bi-zh"><span class="flag">??</span><span class="chip t">???訾??啁′?</span><span class="chip t">?偌?圾瘞怠?瞉梁?<sup>??</sup></span><span class="chip t">銝硃?貊?瘝寥<sup>??</sup></span></div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">??Fav1 ?祆?</div>
+          <div class="bi-jp"><span class="flag">??</span>?准?潦????怒?撘?蝺??西云?脯??脯???押?准??????????擃芥?脰?～??脯??整???/div>
+          <div class="bi-zh"><span class="flag">??</span>?剝??賜?蝮株?鞈芸惜?風?脫???撟怠??擃株嚗?????蝢垣?脫??鈭桅???/div>
+        </div>
+
+        <div class="footnote" style="padding:8px 0;background:transparent;border:none;">
+          <span class="jp-fn">?? ?? ?喋??????扎??? ?扎?～??怒?艾?術a嚗????柴嚗?? ?瑯?喋??潦?踴?? ?瑯?喋??潦??潦??～????胯?踴?? ??芥?怒??/span>
+          <span class="zh-fn">?? ?? 璊唳硃?航銝??暽潦?? 璊唳硃?舐?箇?蝤粹????擃桃移嚗?? ??擃桃移??? ??擃桃移?餉風擃桃??餉風擃桐像??? ?風擃格硃</span>
+        </div>
+
+        <hr style="border:none;border-top:1.5px dashed #ddeaea;margin:12px 0;">
+
+        <!-- Fav 2 -->
+        <div style="background:rgba(244,123,32,.1);border-radius:8px;padding:6px 10px;margin-bottom:8px;font-size:.72rem;font-weight:700;color:var(--org);">??Favorite 2</div>
+
+        <div class="bi">
+          <div class="bi-label">??Fav2 閬??撣荔?</div>
+          <div class="bi-jp"><span class="flag">??</span><span class="med">????行</span></div>
+          <div class="bi-zh"><span class="flag">??</span><span class="med">?梯霅瑞??</span></div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">??Fav2 隤祆????冽?嚗?/div>
+          <div class="bi-jp"><span class="flag">??</span>??～?詻??脯???擃芥?貊???晞??????扼?潦??敶Ｘ?嚗囿銵券??霅瑯??????研撘瑕漲?晞嚗??芥?愈P?怒??乓??Ｕ?喋?急????芥???Ｕ?准???晞??～?詻???擃芥?摰??整???/div>
+          <div class="bi-zh"><span class="flag">??</span>?寥◢璈??質??風擃桃???嚗??????擃桃結敺???喳??耦?敶Ｖ?霅瑁?嚗澈?霅琿垣蝯脰”?ｇ???潭???銝?寥垣蝯脩?撘琿?摨西?敶扼??蝳行撣賊??憸冽??璉撣嗡???瑕拿??/div>
+        </div>
+
+        <div class="footnote" style="padding:8px 0;background:transparent;border:none;">
+          <span class="jp-fn">?? ??[?瑯?喋??潦??潦??～????珠嚗?～??喋/??瑯?准??15嚗????瘞游?閫??怒???芥?侷帠-???怒?胯???/span>
+          <span class="zh-fn">?? ??[瘣垣蝎整霅琿垣蝝霅琿垣銋設嚗??脣?賣飢???瘞抒-15嚗???瘞游?閫?結??霅琿垣瘝鉛帠-???折</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ??????????????????????????????????????????????????
+     SLIDE 09 ? Favorite 3 鞊??芾?靽殷?蝢捆?? favorite_02.jpg
+?????????????????????????????????????????????????? -->
+<section class="slide" id="s09">
+  <div class="slabel"><span class="sn">SLIDE 09</span><span class="st">Favorite 3嚗avorite_02.jpg嚗?/span></div>
+  <div class="card">
+    <div class="split2">
+      <div class="imgpanel" style="min-height:620px;">
+        <img src="https://d2w53g1q050m78.cloudfront.net/cosmecollegecom/uploads/unu/unu-smptrtm-glsy/img/favorite_02.jpg" alt="favorite_02.jpg" />
+      </div>
+      <div class="col bglt" style="overflow-y:auto;max-height:620px;">
+
+        <div class="bi">
+          <div class="bi-label">??閬??撣荔?</div>
+          <div class="bi-jp"><span class="flag">??</span><span class="med">鞊??芾?靽殷?蝢捆??</span></div>
+          <div class="bi-zh"><span class="flag">??</span><span class="med">皛踵遛?風??蝢捆蝎曇</span></div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">??隤祆????冽?嚗?/div>
+          <div class="bi-jp"><span class="flag">??</span>銝???芥?Ｕ?胯?摨瑞??芷囿??潦??????怒囿?格???蝝?????押???嫘?Ｕ??准??鋆耨?餌?摰寞?????喋?胯??∠???氬??????具??擃芥??/div>
+          <div class="bi-zh"><span class="flag">??</span>???剜?”?Ｗ?憭恬??箔??瑟?蝬剜?蝘擃桃??亙熒憭?嚗???撠垣蝯脣?蝯?閬??∠??拙????對?摰?瘥?隤踹?霅瑞???摰寞???霈?擃桃?扯?蝬餅憒結?祉??黎??/div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">??閬芣偌?扯?靽格????怒??氬嚗???蝔殷?</div>
+          <div class="bi-jp"><span class="flag">??</span><strong>?? 閬芣偌?扯?靽格?????</strong><br>
+            <span class="chip g">?偌?圾?菜捉??sup>??</sup></span>
+            <span class="chip g">?偌?圾?喋?潦??sup>??</sup></span>
+            <span class="chip g">?偌?圾?瑯??sup>??</sup></span>
+            <span class="chip g">?啜?踴??喲<sup>??</sup></span>
+          </div>
+          <div class="bi-zh"><span class="flag">??</span><strong>?? 閬芣偌?扯風??????</strong><br>
+            <span class="chip t">?偌?圾?挺??sup>??</sup></span>
+            <span class="chip t">?偌?圾???<sup>??</sup></span>
+            <span class="chip t">?偌?圾蝯脰???sup>??</sup></span>
+            <span class="chip t">暻抵??sup>??</sup></span>
+          </div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">??閬芣硃?扯?靽格????怒??氬嚗???蝔殷?</div>
+          <div class="bi-jp"><span class="flag">??</span><strong>?? 閬芣硃?扯?靽格?????</strong><br>
+            <span class="chip g">?押?准?怒?怒??詻嚗?????嫘??芥/?芥????瑯嚗?sup>??</sup></span>
+            <span class="chip g">?颯??NG<sup>??</sup></span>
+          </div>
+          <div class="bi-zh"><span class="flag">??</span><strong>?? 閬芣硃?扯風??????</strong><br>
+            <span class="chip t">???舐?瘞券鈭?璊?粹?/颲???瑕嚗?sup>??</sup></span>
+            <span class="chip t">蟡??航NG<sup>??</sup></span>
+          </div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">??靽嘀??嚗??迎???3蝔殷?</div>
+          <div class="bi-jp"><span class="flag">??</span><strong>?? 靽嘀?? ??</strong><br>
+            <span class="chip g">?颯??NP</span>
+            <span class="chip g">?怒???拇?摰硃</span>
+            <span class="chip g">?嫘????渲?鞈?/span>
+          </div>
+          <div class="bi-zh"><span class="flag">??</span><strong>?? 靽??? ??</strong><br>
+            <span class="chip t">蟡??航NP</span>
+            <span class="chip t">撌游毀??瘝?/span>
+            <span class="chip t">?ㄦ??/span>
+          </div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">??蝝怠?蝺?Ｘ???/div>
+          <div class="bi-jp"><span class="flag">??</span><strong>?? 蝝怠?蝺????</strong><br><span class="chip g">?胯?扎???瘝?sup>??</sup></span></div>
+          <div class="bi-zh"><span class="flag">??</span><strong>?? 蝝怠?蝺風????</strong><br><span class="chip t">摨怠澈隡??硃<sup>??</sup></span></div>
+        </div>
+
+      </div>
+    </div>
+    <div class="footnote">
+      <span class="jp-fn">?? ?? ?瑯?喋??潦??潦??～????胯?踴?? ??芥?怒?胯?賬??准?怠?瘞游?閫??押?脯????? ??芥?怒?胯?賬??准?怠?瘞游?閫??怒????? ??潦??～????胯??芥?怒?踴?? ?胯?扎??剔車摮硃</span>
+      <span class="zh-fn">?? ?? ??擃桃移?餉風擃桃??餉風擃桐像??? 霅琿垣瘝嫣葉隞亦蝖祈??臬?瘞游?閫?????賡???? 霅琿垣瘝嫣葉隞亦蝖祈??臬?瘞游?閫?結?????? ?風擃桃??餉風擃桐像?餉風擃格硃??? 摨怠澈隡??車摮硃</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ??????????????????????????????????????????????????
+     SLIDE 10 ? 5?扎???嚗?3STEP free_step.jpg 嚗?img_07.jpg
+?????????????????????????????????????????????????? -->
+<section class="slide" id="s10">
+  <div class="slabel"><span class="sn">SLIDE 10</span><span class="st">5?扎???嚗?3STEP嚗ree_step.jpg 嚗?img_07.jpg嚗?/span></div>
+  <div class="card">
+
+    <!-- 5????????-->
+    <div class="hdr">
+      <div class="bi" style="margin:0;border-color:rgba(255,255,255,.3);max-width:720px;margin:0 auto;">
+        <div class="bi-label" style="background:rgba(255,255,255,.12);color:rgba(255,255,255,.65);">?颯?瑯?喋?扎???/div>
+        <div class="bi-jp" style="background:rgba(139,26,26,.25);border-color:#ffa0a0;color:#fff;"><span class="flag">??</span><span class="med">5?扎???/span></div>
+        <div class="bi-zh" style="background:rgba(21,101,192,.25);border-color:#80b3ff;color:#fff;"><span class="flag">??</span><span class="med">5 憭批?敹瘛餃?</span></div>
+      </div>
+      <div class="bi" style="margin:12px auto 0;border-color:rgba(255,255,255,.3);max-width:720px;">
+        <div class="bi-label" style="background:rgba(255,255,255,.12);color:rgba(255,255,255,.65);">?萸??喋???/div>
+        <div class="bi-jp" style="background:rgba(139,26,26,.25);border-color:#ffa0a0;color:#fff;"><span class="flag">??</span>瘥雿踴??????柴?囿?怒??????????行</div>
+        <div class="bi-zh" style="background:rgba(21,101,192,.25);border-color:#80b3ff;color:#fff;"><span class="flag">??</span>瘥予?質?雿輻????嗥閬策?剔?垣蝯脫?皞怠???賊???/div>
+      </div>
+    </div>
+
+    <!-- 5????啜?? -->
+    <div class="free5 bglt">
+      <div class="fitem">
+        <span class="ico">?</span>
+        <div class="fjp">?瑯?喋<sup>??</sup></div>
+        <div class="fzh">?賡?<sup>??</sup></div>
+        <div class="fsub">???/ ?⊥溶??/div>
+      </div>
+      <div class="fitem">
+        <span class="ico">?</span>
+        <div class="fjp">?萸??潦?<sup>??</sup></div>
+        <div class="fzh">蝖恍暽賜頂?暑?批?<sup>??</sup></div>
+        <div class="fsub">???/ ?⊥溶??/div>
+      </div>
+      <div class="fitem">
+        <span class="ico">?</span>
+        <div class="fjp">?梁瘝?/div>
+        <div class="fzh">蝷衣瘝?/div>
+        <div class="fsub">???/ ?⊥溶??/div>
+      </div>
+      <div class="fitem">
+        <span class="ico">?</span>
+        <div class="fjp">蝝怠?蝺?</div>
+        <div class="fzh">蝝怠?蝺?嗅?</div>
+        <div class="fsub">???/ ?⊥溶??/div>
+      </div>
+      <div class="fitem">
+        <span class="ico">?</span>
+        <div class="fjp">????脫?</div>
+        <div class="fzh">???脩?</div>
+        <div class="fsub">???/ ?⊥溶??/div>
+      </div>
+    </div>
+    <div class="footnote">
+      <span class="jp-fn">?? ?? ?瑯?喋??潦?踴?? 蝖恍蝟餌??Ｘ暑?批</span>
+      <span class="zh-fn">?? ?? ??擃桃移??? 蝖恍蝟餌??Ｘ暑?批?</span>
+    </div>
+
+    <!-- 3STEP -->
+    <div class="hdr" style="margin-top:4px;">
+      <div class="bi" style="margin:0 auto;border-color:rgba(255,255,255,.3);max-width:720px;">
+        <div class="bi-label" style="background:rgba(255,255,255,.12);color:rgba(255,255,255,.65);">3STEP ?颯?瑯?喋?扎???/div>
+        <div class="bi-jp" style="background:rgba(139,26,26,.25);border-color:#ffa0a0;color:#fff;"><span class="flag">??</span><span class="med">?具??擃芥?啜?～??准??3STEP</span></div>
+        <div class="bi-zh" style="background:rgba(21,101,192,.25);border-color:#80b3ff;color:#fff;"><span class="flag">??</span><span class="med">??蝯脣?瞉斤?擃桃? 3甇仿?</span></div>
+      </div>
+    </div>
+
+    <div class="split3 bglt" style="gap:14px;padding:24px 32px;">
+
+      <div class="scard">
+        <div class="shdr" style="background:var(--teal);">
+          <div class="sn2">1</div>
+          <div><div class="st2">SHAMPOO</div><div class="ss2">STEP 1</div></div>
+        </div>
+        <div class="sbody">
+          <div class="lang-tag lang-jp-tag">?? ?交?</div>
+          <div class="sli jp-li">?研??暹僖?折?柴?擃芥?鈭???/div>
+          <div class="sli jp-li">?拚????怠????部蝡?艾?????????潦?????急???/div>
+          <div class="sli jp-li">???????/div>
+          <div class="lang-tag lang-zh-tag" style="margin-top:10px;">?? 銝剜?</div>
+          <div class="sli tl-li">隞交澈瘞游???瞈?株?擃桃結</div>
+          <div class="sli tl-li">????嚗??蝬踹?瘜⊥部敺?隞交??寡????拇?瘛?/div>
+          <div class="sli tl-li">隞交?瘞游器摨?瘣嗾瘛?/div>
+        </div>
+      </div>
+
+      <div class="scard">
+        <div class="shdr" style="background:var(--org);">
+          <div class="sn2">2</div>
+          <div><div class="st2">TREATMENT</div><div class="ss2">STEP 2</div></div>
+        </div>
+        <div class="sbody">
+          <div class="lang-tag lang-jp-tag">?? ?交?</div>
+          <div class="sli jp-li">瘞湔??????銝剝????葉敹????擐湔??整???/div>
+          <div class="sli jp-li">撠?蝵柴?????????/div>
+          <div class="lang-tag lang-zh-tag" style="margin-top:10px;">?? 銝剜?</div>
+          <div class="sli og-li">頛??擃桃結憭?瘞游?敺?????餃??寞銝剜挾?喲垣撠橘?頛??撟怠?豢</div>
+          <div class="sli og-li">???敺?隞交?瘞游器摨?瘣嗾瘛?/div>
+        </div>
+      </div>
+
+      <div class="scard">
+        <div class="shdr" style="background:var(--teal-d);">
+          <div class="sn2">3</div>
+          <div><div class="st2">OIL?膂ILK</div><div class="ss2">STEP 3</div></div>
+        </div>
+        <div class="sbody">
+          <div class="lang-tag lang-jp-tag">?? ?交?</div>
+          <div class="sli jp-li">?踴?怒??押敺?銋整??囿?急???銝剖??恍??擐湔??整???/div>
+          <div class="lang-tag lang-zh-tag" style="margin-top:10px;">?? 銝剜?</div>
+          <div class="sli dk-li">瘥溝???虫嗾?銋暸垣????誑擃桀偏?箔葉敹??餃??對???瘣?/div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- img_07.jpg -->
+    <div class="dashed-top">
+      <div class="split2">
+        <div class="imgpanel" style="min-height:360px;">
+          <img src="https://d2w53g1q050m78.cloudfront.net/cosmecollegecom/uploads/unu/unu-smptrtm-glsy/img/img_07.jpg" alt="img_07.jpg" />
+        </div>
+        <div class="col bglt" style="display:flex;flex-direction:column;justify-content:center;gap:12px;">
+          <div class="bi">
+            <div class="bi-label">img_07 ? 銝?喋???/div>
+            <div class="bi-jp"><span class="flag">??</span>?????研???</div>
+            <div class="bi-zh"><span class="flag">??</span>敹?雿?芸楛??芾悸</div>
+          </div>
+          <div class="bi">
+            <div class="bi-label">img_07 ? ?～?喋?嚗之嚗?/div>
+            <div class="bi-jp"><span class="flag">??</span><span class="big">?扼??柴???日囿??/span></div>
+            <div class="bi-zh"><span class="flag">??</span><span class="big">頛???憭Ｗ?隞交???蝯脣?瞉日垣</span></div>
+          </div>
+          <div class="bi">
+            <div class="bi-label">img_07 ? 撣臭??萸??喋???/div>
+            <div class="bi-jp"><span class="flag">??</span>擃芥???????氬???/div>
+            <div class="bi-zh"><span class="flag">??</span>敺垣蝯脣?冽?撖行?摨?/div>
+          </div>
+          <div class="bi">
+            <div class="bi-label">img_07 ? ?芥?喋撣胯?</div>
+            <div class="bi-jp"><span class="flag">??</span><span class="med">???????</span></div>
+            <div class="bi-zh"><span class="flag">??</span><span class="med">?擳??祇???</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ??????????????????????????????????????????????????
+     SLIDE 11 ? 瞈??晞?衣 mv_btm.jpg
+?????????????????????????????????????????????????? -->
+<section class="slide" id="s11">
+  <div class="slabel"><span class="sn">SLIDE 11</span><span class="st">瞈??晞?衣嚗v_btm.jpg嚗?/span></div>
+  <div class="card">
+    <div class="split2">
+      <div class="imgpanel" style="min-height:500px;">
+        <img src="https://d2w53g1q050m78.cloudfront.net/cosmecollegecom/uploads/unu/unu-smptrtm-glsy/img/mv_btm.jpg" alt="mv_btm.jpg" />
+      </div>
+      <div class="col bglt" style="display:flex;flex-direction:column;justify-content:center;gap:14px;">
+
+        <div class="bi">
+          <div class="bi-label">???～?喋?嚗?餃之嚗?/div>
+          <div class="bi-jp"><span class="flag">??</span><span class="big">瞈??晞?衣嚗?/span></div>
+          <div class="bi-zh"><span class="flag">??</span><span class="big">瞈?霅瑞?憭找??堆?</span></div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">??撣胯??准???賢葛嚗?/div>
+          <div class="bi-jp"><span class="flag">??</span><span class="med">UNU ?柴?芥??行</span></div>
+          <div class="bi-zh"><span class="flag">??</span><span class="med">UNU ?典振暺??</span></div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">???芥?喋?喋??潘?銝?餃之嚗?/div>
+          <div class="bi-jp"><span class="flag">??</span><span class="big">?扼??柴???日囿??br>?啜?～??准??</span></div>
+          <div class="bi-zh"><span class="flag">??</span><span class="big">摰??誘鈭箸?祉?憒結?黎擃殷?<br>霈??冽??典?芯縑?箸?嚗?/span></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ??????????????????????????????????????????????????
+     SLIDE 12 ? ??喋??脣郎 btm.jpg
+?????????????????????????????????????????????????? -->
+<section class="slide" id="s12">
+  <div class="slabel"><span class="sn">SLIDE 12</span><span class="st">??喋??脣郎?颯?准?詻?堆?btm.jpg嚗?/span></div>
+  <div class="card">
+    <div class="split2">
+      <div class="imgpanel" style="min-height:560px;">
+        <img src="https://d2w53g1q050m78.cloudfront.net/cosmecollegecom/uploads/unu/unu-smptrtm-glsy/img/btm.jpg" alt="btm.jpg" />
+      </div>
+      <div class="col dark-col" style="display:flex;flex-direction:column;justify-content:center;gap:12px;padding:36px 30px;">
+
+        <div class="bi" style="border-color:rgba(255,255,255,.2);">
+          <div class="bi-label" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.6);">??銝?喋??潘??喉?</div>
+          <div class="bi-jp" style="background:rgba(139,26,26,.3);border-color:#ff9999;color:#fff;"><span class="flag">??</span><span class="med">??潦?????/span><br>蝘?????舐?????/div>
+          <div class="bi-zh" style="background:rgba(21,101,192,.3);border-color:#80b3ff;color:#fff;"><span class="flag">??</span><span class="med">?⊥??箄撌梯鞊芸??/span><br>?賣??撌梁?嚗?撌晞?/div>
+        </div>
+
+        <div class="bi" style="border-color:rgba(255,255,255,.2);">
+          <div class="bi-label" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.6);">???????嚗葉憭桀椰嚗?/div>
+          <div class="bi-jp" style="background:rgba(139,26,26,.3);border-color:#ff9999;color:#fff;"><span class="flag">??</span>瘚??柴?踴?怒?餈賬??????乓?<br>?芸?????踴?怒?鞎怒????乓?</div>
+          <div class="bi-zh" style="background:rgba(21,101,192,.3);border-color:#80b3ff;color:#fff;"><span class="flag">??</span>?喳之?賢?閰行?銵??摮?<br>?喳???◢?潛??亙?</div>
+        </div>
+
+        <div class="bi" style="border-color:rgba(255,255,255,.2);">
+          <div class="bi-label" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.6);">????喋??喋?颯???/div>
+          <div class="bi-jp" style="background:rgba(139,26,26,.3);border-color:#ff9999;color:#fff;"><span class="flag">??</span>??????????br>??晞??喋?</div>
+          <div class="bi-zh" style="background:rgba(21,101,192,.3);border-color:#80b3ff;color:#fff;"><span class="flag">??</span>?箔?霈??湔??芸楛????<br>撠惇霅琿垣??</div>
+        </div>
+
+        <div class="bi" style="border-color:rgba(255,255,255,.2);">
+          <div class="bi-label" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.6);">????喋??准</div>
+          <div class="bi-jp" style="background:rgba(139,26,26,.3);border-color:#ff9999;color:#fff;"><span class="flag">??</span><span style="font-family:'Outfit',sans-serif;font-size:2rem;font-weight:900;letter-spacing:3px;">UNU</span></div>
+          <div class="bi-zh" style="background:rgba(21,101,192,.3);border-color:#80b3ff;color:#fff;"><span class="flag">??</span><span style="font-family:'Outfit',sans-serif;font-size:2rem;font-weight:900;letter-spacing:3px;">UNU</span></div>
+        </div>
+
+        <div class="bi" style="border-color:rgba(255,255,255,.2);">
+          <div class="bi-label" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.6);">???梯??喋??潘??銝嚗?/div>
+          <div class="bi-jp" style="background:rgba(139,26,26,.3);border-color:#ff9999;color:#fff;"><span class="flag">??</span>I'm the only one who can love myself.</div>
+          <div class="bi-zh" style="background:rgba(21,101,192,.3);border-color:#80b3ff;color:#fff;"><span class="flag">??</span>I'm the only one who can love myself.<br><span style="font-size:.82rem;opacity:.8;">嚗隤??柴?曆蝙?剁??梯????舐?交窒?剁?</span></div>
+        </div>
+
+        <div class="bi" style="border-color:rgba(255,255,255,.2);">
+          <div class="bi-label" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.6);">???交隤?嚗?銝嚗?/div>
+          <div class="bi-jp" style="background:rgba(139,26,26,.3);border-color:#ff9999;color:#fff;"><span class="flag">??</span>蝘?????舐?????/div>
+          <div class="bi-zh" style="background:rgba(21,101,192,.3);border-color:#80b3ff;color:#fff;"><span class="flag">??</span>?賢??典??冽??撌梁?嚗?撌晞?/div>
+        </div>
+
+      </div>
+    </div>
+    <!-- 瘜??脫? -->
+    <div style="background:#001A18;padding:16px 36px;">
+      <p style="font-size:.68rem;color:rgba(255,255,255,.4);line-height:1.8;">
+        ?儭????鈭?嚗?蝎批?銵?摰蝞∠?瘜????脫??蝪∪??葉?蕃霅臬?靘???蝎批?撱??瘜?隤踵嚗?恐蝔梢???賬??耨霅瑯?箝風????隤芣????乓??拇???整?蝺拙?隤?隞亦泵??蝳憌??亦蝞∠?蝵莎?TFDA嚗??摰祕?誨??獢??潔?撣???蝣箄?????      </p>
+    </div>
+  </div>
+</section>
+
+
+</main>
+
+<script>
+  const TOTAL = 12;
+  let cur = 1;
+
+  const dotWrap = document.getElementById('dots');
+  for (let i = 1; i <= TOTAL; i++) {
+    const b = document.createElement('button');
+    b.className = 'dot' + (i===1?' on':'');
+    b.setAttribute('aria-label', `?嫘?扎? ${i}`);
+    b.dataset.i = i;
+    b.addEventListener('click', () => jump(i));
+    dotWrap.appendChild(b);
+  }
+
+  function jump(n) {
+    if (n < 1 || n > TOTAL) return;
+    document.getElementById('s' + String(cur).padStart(2,'0')).classList.remove('on');
+    dotWrap.children[cur-1].classList.remove('on');
+    cur = n;
+    const el = document.getElementById('s' + String(cur).padStart(2,'0'));
+    el.classList.add('on');
+    dotWrap.children[cur-1].classList.add('on');
+    document.getElementById('ctr').innerHTML = `${cur} / ${TOTAL}<br><span style="font-size:.65rem;opacity:.5;">?? ?交??? 嚗??? 撱???芸??葉??/span>`;
+    document.getElementById('prev').disabled = cur === 1;
+    document.getElementById('next').disabled = cur === TOTAL;
+    window.scrollTo({ top: 62, behavior: 'smooth' });
+  }
+
+  function go(d) { jump(cur + d); }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') go(+1);
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   go(-1);
+  });
+
+  let tx0 = 0;
+  document.addEventListener('touchstart', e => { tx0 = e.touches[0].clientX; }, { passive:true });
+  document.addEventListener('touchend',   e => {
+    const d = e.changedTouches[0].clientX - tx0;
+    if (Math.abs(d) > 55) go(d < 0 ? +1 : -1);
+  }, { passive:true });
+
+  jump(1);
+</script>
+</body>
+</html>
