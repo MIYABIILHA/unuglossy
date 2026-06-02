@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UNU 護色亮澤系列 ─ 台灣版翻譯對照簡報 (廣告優化版)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Noto+Sans+TC:wght@400;700;900&family=Outfit:wght@700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --teal:   #00A79D;
+      --teal-d: #006D66;
+      --teal-l: #D6F4F1;
+      --org:    #F47B20;
+      --org-l:  #FFF0E5;
+      --jp:     #C0392B;
+      --jp-l:   #FDF3F2;
+      --zh:     #1565C0;
+      --zh-l:   #EEF5FF;
+      --note-c: #777;
+      --dark:   #1A2828;
+      --ltgray: #F2F7F7;
+      --white:  #FFFFFF;
+      --r: 16px;
+      --sh: 0 6px 28px rgba(0,130,120,.13);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Sans TC','Noto Sans JP',sans-serif; background:#0D1A1A; color:var(--dark); }
+
+    /* ── NAV ── */
+    #nav {
+      position:fixed; top:0; left:0; right:0; z-index:300;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:11px 22px;
+      background:rgba(8,20,20,.92); backdrop-filter:blur(12px);
+      border-bottom:1px solid rgba(0,167,157,.22);
+    }
+    #nav .logo { font-family:'Outfit',sans-serif; font-weight:900; font-size:1.25rem; color:var(--teal); letter-spacing:2px; }
+    #nav .info { font-size:.75rem; color:rgba(255,255,255,.35); text-align:center; line-height:1.4; }
+    #nav .btns { display:flex; gap:8px; }
+    #nav button {
+      background:rgba(0,167,157,.12); border:1px solid rgba(0,167,157,.35);
+      color:var(--teal); padding:7px 16px; border-radius:100px; cursor:pointer;
+      font-size:.78rem; font-weight:700; transition:.2s;
+    }
+    #nav button:hover { background:var(--teal); color:#fff; }
+    #nav button:disabled { opacity:.28; cursor:default; }
+
+    /* ── DOTS ── */
+    #dots {
+      position:fixed; right:16px; top:50%; transform:translateY(-50%);
+      display:flex; flex-direction:column; gap:6px; z-index:299;
+    }
+    .dot {
+      width:7px; height:7px; border-radius:50%;
+      background:rgba(0,167,157,.22); border:none; cursor:pointer; transition:.25s;
+    }
+    .dot.on { background:var(--teal); transform:scale(1.6); }
+
+    /* ── STAGE / SLIDES ── */
+    #stage { padding-top:64px; display:flex; flex-direction:column; align-items:center; }
+    .slide { display:none; width:100%; max-width:1200px; margin:24px auto; }
+    .slide.on { display:block; animation:pop .32s ease both; }
+    @keyframes pop { from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;} }
+
+    /* ── CARD ── */
+    .card { background:var(--white); border-radius:var(--r); overflow:hidden; box-shadow:var(--sh); }
+
+    /* ── Slide label ── */
+    .slabel { display:flex; align-items:center; gap:10px; padding:8px 0 4px; }
+    .slabel .sn { font-family:'Outfit',sans-serif; font-size:.68rem; font-weight:700; color:rgba(255,255,255,.32); letter-spacing:2px; }
+    .slabel .st { font-size:.68rem; color:rgba(255,255,255,.22); }
+
+    /* ── Layout ── */
+    .split2 { display:grid; grid-template-columns:1fr 1fr; }
+    .split3 { display:grid; grid-template-columns:repeat(3,1fr); }
+    .imgpanel { overflow:hidden; }
+    .imgpanel img { width:100%; height:100%; object-fit:cover; object-position:top; display:block; }
+    .col { padding:28px 30px; }
+    .col + .col { border-left:1px solid #ddeaea; }
+    .bglt { background:var(--ltgray); }
+    .hdr { background:linear-gradient(135deg,var(--teal),var(--teal-d)); color:#fff; padding:26px 40px; text-align:center; }
+    .hdr.org { background:linear-gradient(135deg,var(--org),#B85A0A); }
+    .hdr h2 { font-size:1.7rem; font-weight:900; margin-bottom:4px; }
+    .hdr p  { opacity:.85; font-size:.88rem; }
+
+    /* ── Bilingual Block ── */
+    .bi {
+      border-radius:12px; overflow:hidden;
+      border:1.5px solid #dde8e8;
+      margin-bottom:12px;
+    }
+    .bi-label {
+      font-size:.68rem; font-weight:700; letter-spacing:2px;
+      padding:5px 12px; background:#f0f0f0; color:#555;
+      border-bottom:1px solid #e0e0e0;
+    }
+    .bi-jp {
+      padding:10px 14px;
+      background:var(--jp-l);
+      border-left:4px solid var(--jp);
+      font-family:'Noto Sans JP',sans-serif;
+      font-size:.88rem; font-weight:700; line-height:1.7; color:#2d1010;
+    }
+    .bi-jp .flag { font-size:.7rem; opacity:.6; margin-right:4px; }
+    .bi-zh {
+      padding:10px 14px;
+      background:var(--zh-l);
+      border-left:4px solid var(--zh);
+      border-top:1px dashed #c8d8f0;
+      font-size:.88rem; font-weight:700; line-height:1.7; color:#0d1e3a;
+    }
+    .bi-zh .flag { font-size:.7rem; opacity:.6; margin-right:4px; }
+    /* small text within bi */
+    .bi-jp .sm, .bi-zh .sm { font-size:.72rem; font-weight:400; display:block; margin-top:3px; opacity:.7; line-height:1.6; }
+    .bi-jp .big { font-size:1.4rem; font-weight:900; display:block; line-height:1.2; }
+    .bi-zh .big { font-size:1.4rem; font-weight:900; display:block; line-height:1.2; }
+    .bi-jp .med { font-size:1.05rem; font-weight:900; }
+    .bi-zh .med { font-size:1.05rem; font-weight:900; }
+
+    /* compliance note */
+    .comply {
+      font-size:.68rem; color:var(--zh); background:#E8F0FF;
+      border-left:3px solid var(--zh); padding:5px 10px;
+      border-radius:0 6px 6px 0; margin:4px 0 8px;
+      line-height:1.6;
+    }
+
+    /* 注釈 (footer note) */
+    .footnote {
+      font-size:.68rem; color:var(--note-c); line-height:1.8;
+      padding:12px 32px; background:#f5fafa; border-top:1px solid #ddeaea;
+    }
+    .footnote .jp-fn { color:#8B1A1A; display:block; }
+    .footnote .zh-fn { color:#1565C0; display:block; margin-top:2px; }
+
+    /* chip */
+    .chip {
+      display:inline-block; font-size:.75rem; font-weight:700;
+      padding:2px 10px; border-radius:100px; margin:2px;
+    }
+    .chip.t { background:var(--teal-l); color:var(--teal-d); border:1px solid var(--teal); }
+    .chip.o { background:var(--org-l); color:#7B3000; border:1px solid var(--org); }
+    .chip.g { background:#eee; color:#444; border:1px solid #bbb; }
+
+    /* step badge */
+    .sbadge {
+      display:inline-block; font-family:'Outfit',sans-serif;
+      font-weight:900; font-size:.7rem; letter-spacing:1.5px;
+      padding:2px 10px; border-radius:100px; margin-bottom:4px;
+    }
+    .sbadge.t { background:var(--teal); color:#fff; }
+    .sbadge.o { background:var(--org);  color:#fff; }
+
+    /* pyramid */
+    .pyr { display:flex; gap:10px; align-items:stretch; margin-bottom:10px; }
+    .pyr-lbl { width:60px; flex-shrink:0; font-size:.68rem; font-weight:700; color:#777; text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px; }
+    .pyr-lbl span { font-size:1.3rem; }
+    .pyr-c { flex:1; border-radius:10px; padding:11px 14px; }
+    .pyr-c.tp { background:#FFF4E0; border:1.5px solid #FFD060; }
+    .pyr-c.md { background:#EDF9F4; border:1.5px solid #6DC0A0; }
+    .pyr-c.bs { background:#FCF0DC; border:1.5px solid #C08840; }
+    .pyr-inner-lbl { font-size:.65rem; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#888; margin-bottom:4px; }
+    .pyr-jp { font-size:.82rem; font-weight:700; color:#2d1010; font-family:'Noto Sans JP',sans-serif; margin-bottom:4px; }
+    .pyr-zh { font-size:.82rem; font-weight:700; color:#0d1e3a; }
+
+    /* 5-free */
+    .free5 { display:grid; grid-template-columns:repeat(5,1fr); gap:12px; padding:24px 36px; background:var(--ltgray); }
+    .fitem { background:#fff; border-radius:12px; padding:16px 10px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,.05); border:1.5px solid #ddeaea; }
+    .fitem .ico { font-size:1.8rem; display:block; margin-bottom:6px; }
+    .fitem .fjp { font-size:.82rem; font-weight:900; color:#8B1A1A; margin-bottom:3px; font-family:'Noto Sans JP',sans-serif; }
+    .fitem .fzh { font-size:.82rem; font-weight:900; color:#1565C0; }
+    .fitem .fsub { font-size:.67rem; color:#888; margin-top:2px; }
+
+    /* step card (3-step) */
+    .scard { background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 2px 10px rgba(0,0,0,.06); }
+    .shdr  { padding:12px 16px; color:#fff; display:flex; align-items:center; gap:10px; }
+    .shdr .sn2 { font-family:'Outfit',sans-serif; font-size:1.7rem; font-weight:900; opacity:.6; line-height:1; }
+    .shdr .st2 { font-size:.88rem; font-weight:900; }
+    .shdr .ss2 { font-size:.67rem; opacity:.8; }
+    .sbody { padding:14px 16px; }
+    .sli { display:flex; gap:6px; margin-bottom:8px; font-size:.8rem; line-height:1.5; }
+    .sli::before { content:"▸"; flex-shrink:0; margin-top:1px; }
+    .sli.jp-li::before { color:var(--jp); }
+    .sli.zh-li::before { color:var(--zh); }
+    .sli.tl-li::before { color:var(--teal); }
+    .sli.og-li::before { color:var(--org); }
+    .sli.dk-li::before { color:var(--teal-d); }
+    .sbody .lang-tag { font-size:.62rem; font-weight:700; letter-spacing:1.5px; padding:1px 6px; border-radius:4px; margin-bottom:3px; display:inline-block; }
+    .sbody .lang-jp-tag { background:var(--jp-l); color:var(--jp); }
+    .sbody .lang-zh-tag { background:var(--zh-l); color:var(--zh); }
+
+    /* price */
+    .price { font-family:'Outfit',sans-serif; font-size:2.6rem; font-weight:900; color:var(--org); }
+    .tag-box { display:inline-flex; align-items:center; border:2px solid var(--org); border-radius:7px; padding:3px 10px; font-weight:700; font-size:.82rem; }
+
+    /* dark panel */
+    .dark-col { background:linear-gradient(160deg,#005850,#002E2A); color:#fff; }
+
+    /* divider */
+    .dashed-top { border-top:2px dashed rgba(0,167,157,.25); margin-top:4px; }
+
+    @media(max-width:860px){
+      .split2,.split3{grid-template-columns:1fr;}
+      .free5{grid-template-columns:repeat(2,1fr);}
+      #dots{display:none;}
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="logo">UNU</div>
+  <div class="info" id="ctr">1 / 12<br><span style="font-size:.65rem;opacity:.5;">🇯🇵 日文原文 ＋ 🇹🇼 廣告優化版中文</span></div>
+  <div class="btns">
+    <button id="prev" onclick="go(-1)">← 上一頁</button>
+    <button id="next" onclick="go(+1)">下一頁 →</button>
+  </div>
+</nav>
+
+<!-- DOTS -->
+<div id="dots"></div>
+
+<!-- STAGE -->
+<main id="stage">
+
+
+<!-- ══════════════════════════════════════════════════
+     SLIDE 01 ─ メインビジュアル mv.jpg
+══════════════════════════════════════════════════ -->
+<section class="slide on" id="s01">
+  <div class="slabel"><span class="sn">SLIDE 01</span><span class="st">メインビジュアル（mv.jpg）</span></div>
+  <div class="card">
+    <div class="split2">
+      <div class="imgpanel" style="min-height:580px;">
+        <img src="LP/https___d2w53g1q050m78.cloudfront.net_cosmecollegecom_uploads_unu_unu-smptrtm-glsy_img_mv.jpg" alt="mv.jpg" />
+      </div>
+      <div class="col bglt" style="overflow-y:auto;max-height:580px;">
+
+        <div class="bi">
+          <div class="bi-label">① ブランド名</div>
+          <div class="bi-jp"><span class="flag">🇯🇵</span>UNU</div>
+          <div class="bi-zh"><span class="flag">🇹🇼</span>UNU</div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">② メインキャッチコピー（バナー）※1</div>
+          <div class="bi-jp"><span class="flag">🇯🇵</span><span class="big">ダメージを狙え！</span><span class="sm">※1</span></div>
+          <div class="bi-zh"><span class="flag">🇹🇼</span><span class="big">針對受損髮質！</span><span class="sm">※1</span></div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">③ 円形ロゴ内テキスト</div>
+          <div class="bi-jp"><span class="flag">🇯🇵</span>あなたらしさを更新して</div>
+          <div class="bi-zh"><span class="flag">🇹🇼</span>以你自己的方式，更新自我</div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">④ サブコピー（上）</div>
+          <div class="bi-jp"><span class="flag">🇯🇵</span>うぬぼれちゃう</div>
+          <div class="bi-zh"><span class="flag">🇹🇼</span>忍不住為自己自豪</div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">⑤ メインコピー（大）</div>
+          <div class="bi-jp"><span class="flag">🇯🇵</span><span class="big">とろツヤ髪へ</span></div>
+          <div class="bi-zh"><span class="flag">🇹🇼</span><span class="big">打造如絲光澤秀髮</span></div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">⑥ 製品名テキスト</div>
+          <div class="bi-jp"><span class="flag">🇯🇵</span>UNU ウヌボレグロッシー<br>シャンプー／ヘアトリートメント</div>
+          <div class="bi-zh"><span class="flag">🇹🇼</span>UNU 護色亮澤系列<br>洗髮精／護髮素</div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">⑦ 4つの特長アイコンラベル</div>
+          <div class="bi-jp"><span class="flag">🇯🇵</span>ハイダメージケア　／　選択的補修※2<br>キューティクル補修　／　カラーキープ</div>
+          <div class="bi-zh"><span class="flag">🇹🇼</span>高受損護理　／　選擇性護理※2<br>角質層護理　／　護色維持</div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">⑧ 注釈（最下部）</div>
+          <div class="bi-jp"><span class="flag">🇯🇵</span><span class="sm" style="opacity:1;">※ ハイダメージにアプローチして髪を整えること<br>※2 傷んだ髪を選択的に補修すること</span></div>
+          <div class="bi-zh"><span class="flag">🇹🇼</span><span class="sm" style="opacity:1;">※ 針對高度受損髮質進行護理，使髮絲呈現整齊狀態<br>※2 針對受損髮絲進行選擇性護理</span></div>
+        </div>
+
+        <div class="comply">🛡️ 合規說明：「補修」改為「護理」，避免宣稱醫療性修復效能。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════
+     SLIDE 02 ─ 製品カバー cv_cv_bg.jpg
+══════════════════════════════════════════════════ -->
+<section class="slide" id="s02">
+  <div class="slabel"><span class="sn">SLIDE 02</span><span class="st">製品カバー（cv_cv_bg.jpg）</span></div>
+  <div class="card">
+    <div class="split2">
+      <div class="imgpanel" style="min-height:520px;">
+        <img src="LP/https___d2w53g1q050m78.cloudfront.net_cosmecollegecom_uploads_unu_unu-smptrtm-glsy_img_cv_cv_bg.jpg" alt="cv_cv_bg.jpg" />
+      </div>
+      <div class="col bglt" style="display:flex;flex-direction:column;justify-content:center;gap:12px;">
+
+        <div class="bi">
+          <div class="bi-label">① 製品シリーズ名（大）</div>
+          <div class="bi-jp"><span class="flag">🇯🇵</span><span class="med">ウヌボレグロッシー</span></div>
+          <div class="bi-zh"><span class="flag">🇹🇼</span><span class="med">護色亮澤系列</span></div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">② 製品カテゴリ（帯）</div>
+          <div class="bi-jp"><span class="flag">🇯🇵</span><span class="med">シャンプー ＆ ヘアトリートメント</span></div>
+          <div class="bi-zh"><span class="flag">🇹🇼</span><span class="med">洗髮精 ＆ 護髮素</span></div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">③ 香り（丸バッジ）</div>
+          <div class="bi-jp"><span class="flag">🇯🇵</span>ペアー＆ブラウンシュガーの香り</div>
+          <div class="bi-zh"><span class="flag">🇹🇼</span>梨子＆黑糖香氛</div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">④ 送料・価格</div>
+          <div class="bi-jp"><span class="flag">🇯🇵</span>
+            <span style="display:inline-flex;align-items:center;gap:8px;">
+              <span class="tag-box">送料無料</span>
+              <span class="price">3,080円</span><span style="font-size:.8rem;">(税込)</span>
+            </span>
+          </div>
+          <div class="bi-zh"><span class="flag">🇹🇼</span>
+            <span style="display:inline-flex;align-items:center;gap:8px;">
+              <span class="tag-box">組合價 (免運費)</span>
+              <span class="price">1,100元</span><span style="font-size:.8rem;">(含稅)</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">⑤ 単品価格（下部バー）</div>
+          <div class="bi-jp"><span class="flag">🇯🇵</span>単品 各1,540円（税込）</div>
+          <div class="bi-zh"><span class="flag">🇹🇼</span>單品 各 550 元（含稅）</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════
+     SLIDE 03 ─ こんな方にオススメ img_04.jpg
+══════════════════════════════════════════════════ -->
+<section class="slide" id="s03">
+  <div class="slabel"><span class="sn">SLIDE 03</span><span class="st">こんな方にオススメ（img_04.jpg）</span></div>
+  <div class="card">
+    <div class="split2">
+      <div class="imgpanel" style="min-height:580px;">
+        <img src="LP/https___d2w53g1q050m78.cloudfront.net_cosmecollegecom_uploads_unu_unu-smptrtm-glsy_img_img_04.jpg" alt="img_04.jpg" />
+      </div>
+      <div class="col bglt" style="display:flex;flex-direction:column;justify-content:center;gap:12px;">
+
+        <div class="bi">
+          <div class="bi-label">① セクションタグ（バッジ）</div>
+          <div class="bi-jp"><span class="flag">🇯🇵</span>こんな方にオススメ</div>
+          <div class="bi-zh"><span class="flag">🇹🇼</span>揮別髮絲困擾，從現在開始！</div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">② チェックリスト 4項目</div>
+          <div class="bi-jp"><span class="flag">🇯🇵</span>
+            ☑ 髪のダメージが進行して手に負えない<br>
+            ☑ 髪にツヤがほしい<br>
+            ☑ 浮き毛やパヤ毛が多い<br>
+            ☑ 髪がパサパサ・ごわつく
+          </div>
+          <div class="bi-zh"><span class="flag">🇹🇼</span>
+            ☑ 髮絲受損嚴重，一般護理無感？<br>
+            ☑ 頭髮黯淡無光，想要天使光圈？<br>
+            ☑ 濕氣一來就毛躁，浮毛難以整理？<br>
+            ☑ 髮尾乾燥糾結，觸感粗糙好阿雜？
+          </div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">③ UNU キャッチコピー</div>
+          <div class="bi-jp"><span class="flag">🇯🇵</span>UNU は マルチな戦略的ケアで<br>髪ダメージにアタック！</div>
+          <div class="bi-zh"><span class="flag">🇹🇼</span>UNU 獨家多重護理策略，<br>精準擊退受損髮質！</div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">④ サブコピー＋タグ（下部）</div>
+          <div class="bi-jp"><span class="flag">🇯🇵</span>選択的に補修して手ごわい<br>
+            <span class="chip g">ダメージ</span><span class="chip g">浮き毛</span><span class="chip g">パサつき</span><br>にアプローチ！
+          </div>
+          <div class="bi-zh"><span class="flag">🇹🇼</span>選擇性護理，精準鎖定<br>
+            <span class="chip t">受損</span><span class="chip t">浮毛</span><span class="chip t">乾澀</span><br>三大痛點，全面突破！
+          </div>
+        </div>
+
+        <div class="comply">🛡️ 合規說明：運用廣告行銷話術增加共鳴，並維持藥事法合規（不宣稱療效、不使用修復字眼）。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════
+     SLIDE 04 ─ 選択的補修システム 概要 img_01.jpg 上半
+══════════════════════════════════════════════════ -->
+<section class="slide" id="s04">
+  <div class="slabel"><span class="sn">SLIDE 04</span><span class="st">選択的補修システム 概要（img_01.jpg 上半）</span></div>
+  <div class="card">
+    <div class="split2">
+      <div class="imgpanel" style="min-height:560px;">
+        <img src="LP/https___d2w53g1q050m78.cloudfront.net_cosmecollegecom_uploads_unu_unu-smptrtm-glsy_img_img_01.jpg" alt="img_01.jpg" />
+      </div>
+      <div class="col bglt" style="overflow-y:auto;max-height:560px;">
+
+        <div class="bi">
+          <div class="bi-label">① セクションタイトル（大）</div>
+          <div class="bi-jp"><span class="flag">🇯🇵</span><span class="big">選択的<br>補修システム</span></div>
+          <div class="bi-zh"><span class="flag">🇹🇼</span><span class="big">選擇性<br>護理系統</span></div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">② サブ説明文</div>
+          <div class="bi-jp"><span class="flag">🇯🇵</span>ダメージ部分を選択補修し<br>きらめき髪をキープ</div>
+          <div class="bi-zh"><span class="flag">🇹🇼</span>針對受損部位精準護理，<br>全天候維持閃耀光澤</div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">③ Step1 バッジ＋見出し</div>
+          <div class="bi-jp"><span class="flag">🇯🇵</span><span class="sbadge o">Step1</span>　髪内部を補修する</div>
+          <div class="bi-zh"><span class="flag">🇹🇼</span><span class="sbadge o">Step1</span>　深入護理髮絲內部</div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">④ Step1 成分名（緑帯）</div>
+          <div class="bi-jp"><span class="flag">🇯🇵</span><span class="med">ケラチンミックス成分<sup>※1</sup></span></div>
+          <div class="bi-zh"><span class="flag">🇹🇼</span><span class="med">角蛋白混合成分<sup>※1</sup></span></div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">⑤ Step1 説明文</div>
+          <div class="bi-jp"><span class="flag">🇯🇵</span>7種のケラチン<sup>※1</sup>が毛髪内部の<br>空洞部分を吸着補修</div>
+          <div class="bi-zh"><span class="flag">🇹🇼</span>7種角蛋白<sup>※1</sup>精準吸附，<br>集中填補髮絲內部的空洞部位</div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">⑥ Step2 バッジ＋見出し</div>
+          <div class="bi-jp"><span class="flag">🇯🇵</span><span class="sbadge t">Step2</span>　髪内部に留める</div>
+          <div class="bi-zh"><span class="flag">🇹🇼</span><span class="sbadge t">Step2</span>　完美鎖住護理成分</div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">⑦ Step2 成分名（緑帯）</div>
+          <div class="bi-jp"><span class="flag">🇯🇵</span><span class="med">バルーンパック成分<sup>※2</sup></span></div>
+          <div class="bi-zh"><span class="flag">🇹🇼</span><span class="med">氣球包覆成分<sup>※2</sup></span></div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">⑧ Step2 説明文</div>
+          <div class="bi-jp"><span class="flag">🇯🇵</span>毛髪補修成分<sup>※1</sup>で満たした部分を<br>包みこんでしっかり留める</div>
+          <div class="bi-zh"><span class="flag">🇹🇼</span>氣球般完整包覆已充填的護髮成分<sup>※1</sup>，<br>長效鎖住護理精華</div>
+        </div>
+
+      </div>
+    </div>
+    <div class="footnote">
+      <span class="jp-fn">🇯🇵 ※1 加水分解ケラチン(羊毛)(分子量30,000/1,000/400)、加水分解ケラチン(カシミヤヤギ)、加水分解ウールキューティクルタンパク、ラウルジモニウムヒドロキシプロピル加水分解ケラチン(羊毛)、ококジモニウムヒドロキシプロピル加水分解ケラチン(羊毛)　※2 アルギン酸Na　＊ヘアオイルは選択的補修システムとしてメドウフォーム-δ-ラクトンを配合</span>
+      <span class="zh-fn">🇹🇼 ※1 加水分解角蛋白（羊毛，分子量30,000/1,000/400）、加水分解角蛋白（喀什米爾山羊）、加水分解羊毛角質蛋白、月桂基二甲基羥丙基加水分解角蛋白（羊毛）、椰油基二甲基羥丙基加水分解角蛋白（羊毛）　※2 海藻酸鈉　＊護髮油以甲多瓦泡鮰-δ-內酯作為選擇性護理系統成分配合</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════
+     SLIDE 05 ─ 選択的補修システム 詳細 img_05.jpg
+══════════════════════════════════════════════════ -->
+<section class="slide" id="s05">
+  <div class="slabel"><span class="sn">SLIDE 05</span><span class="st">選択的補修システム 詳細（img_05.jpg）</span></div>
+  <div class="card">
+    <div class="split2">
+      <div class="imgpanel" style="min-height:620px;">
+        <img src="LP/https___d2w53g1q050m78.cloudfront.net_cosmecollegecom_uploads_unu_unu-smptrtm-glsy_img_img_05.jpg" alt="img_05.jpg" />
+      </div>
+      <div class="col bglt" style="overflow-y:auto;max-height:620px;">
+
+        <div class="bi">
+          <div class="bi-label">① セクションタイトル</div>
+          <div class="bi-jp"><span class="flag">🇯🇵</span><span class="med">選択的補修システム<sup>※1</sup></span></div>
+          <div class="bi-zh"><span class="flag">🇹🇼</span><span class="med">選擇性護理系統<sup>※1</sup></span></div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">② サブタイトル</div>
+          <div class="bi-jp"><span class="flag">🇯🇵</span>進行したダメージを<br>「補修・留める」の2段階濃密ケア</div>
+          <div class="bi-zh"><span class="flag">🇹🇼</span>針對持續受損的髮絲，<br>採用「護理・鎖水」2階段濃密修護</div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">③ 2列帯見出し＋成分名</div>
+          <div class="bi-jp"><span class="flag">🇯🇵</span>＼髪内部を補修／　＼髪内部に留める／<br><span class="chip g">ケラチンミックス成分<sup>※2</sup></span> × <span class="chip g">バルーンパック成分<sup>※3</sup></span></div>
+          <div class="bi-zh"><span class="flag">🇹🇼</span>＼深入護理髮絲內部／　＼完美鎖住護理精華／<br><span class="chip t">角蛋白混合成分<sup>※2</sup></span> × <span class="chip t">氣球包覆成分<sup>※3</sup></span></div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">④ STEP 01 見出し</div>
+          <div class="bi-jp"><span class="flag">🇯🇵</span><span class="sbadge o">STEP 01</span>　ケラチンミックス成分<sup>※2</sup></div>
+          <div class="bi-zh"><span class="flag">🇹🇼</span><span class="sbadge o">STEP 01</span>　角蛋白混合成分<sup>※2</sup></div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">⑤ STEP 01 説明文</div>
+          <div class="bi-jp"><span class="flag">🇯🇵</span>分子量の異なる7種のケラチン<sup>※2</sup>配合で、ダメージが進行した髪内部の空洞化部分を吸着補修</div>
+          <div class="bi-zh"><span class="flag">🇹🇼</span>嚴選7種不同分子量的角蛋白<sup>※2</sup>，精準吸附受損髮絲內部的空洞化部位，給予最集中的護理</div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">⑥ STEP 02 左側説明文</div>
+          <div class="bi-jp"><span class="flag">🇯🇵</span>バルーンパック成分<sup>※3</sup>が毛髪補修成分<sup>※2</sup>で満たした部分を包み込み、しっかり留めてとろ髪持続</div>
+          <div class="bi-zh"><span class="flag">🇹🇼</span>氣球包覆成分<sup>※3</sup>完整包覆已充填護髮精華<sup>※2</sup>的部位，牢固鎖住水分與營養，全天候維持如絲般的柔順觸感</div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">⑦ STEP 02 見出し</div>
+          <div class="bi-jp"><span class="flag">🇯🇵</span><span class="sbadge t">STEP 02</span>　バルーンパック成分<sup>※3</sup></div>
+          <div class="bi-zh"><span class="flag">🇹🇼</span><span class="sbadge t">STEP 02</span>　氣球包覆成分<sup>※3</sup></div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">⑧ Point 吹き出し 見出し</div>
+          <div class="bi-jp"><span class="flag">🇯🇵</span>シャンプー・トリートメントと<br>一連で使うのがオススメ！</div>
+          <div class="bi-zh"><span class="flag">🇹🇼</span>推薦搭配同系列洗護組合，<br>效果更顯著！</div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">⑨ Point 吹き出し 本文</div>
+          <div class="bi-jp"><span class="flag">🇯🇵</span>使う順番に合わせたアプローチができ、ダメージヒット率UP</div>
+          <div class="bi-zh"><span class="flag">🇹🇼</span>依照正確順序使用，讓護理成分在最佳時機發揮作用，大幅提升受損部位的護理精準度！</div>
+        </div>
+
+      </div>
+    </div>
+    <div class="footnote">
+      <span class="jp-fn">🇯🇵 ※1 傷んだ髪を選択的に補修すること　※2 加水分解ケラチン(羊毛)(分子量30,000/1,000/400)、加水分解ケラチン(カシミヤヤギ)、加水分解ウールキューティクルタンパク、ラウルジモニウムヒドロキシプロピル加水分解ケラチン(羊毛)、ококジモニウムヒドロキシプロピル加水分解ケラチン(羊毛)　※3 アルギン酸Na</span>
+      <span class="zh-fn">🇹🇼 ※1 針對受損髮絲進行選擇性護理　※2 加水分解角蛋白（羊毛，分子量30,000/1,000/400）、加水分解角蛋白（喀什米爾山羊）、加水分解羊毛角質蛋白、月桂基二甲基羥丙基加水分解角蛋白（羊毛）、椰油基二甲基羥丙基加水分解角蛋白（羊毛）　※3 海藻酸鈉</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════
+     SLIDE 06 ─ Wキューティクル補修 img_01.jpg下半＋img_06.jpg＋img_02.jpg
+══════════════════════════════════════════════════ -->
+<section class="slide" id="s06">
+  <div class="slabel"><span class="sn">SLIDE 06</span><span class="st">Wキューティクル補修（img_01.jpg下半 ＋ img_06.jpg ＋ img_02.jpg）</span></div>
+  <div class="card">
+
+    <!-- img_01.jpg 下部帯 -->
+    <div style="background:var(--teal);padding:16px 36px;">
+      <div class="bi" style="border-color:rgba(255,255,255,.3);">
+        <div class="bi-label" style="background:rgba(255,255,255,.15);color:rgba(255,255,255,.7);">img_01.jpg 下部帯コピー</div>
+        <div class="bi-jp" style="background:rgba(139,26,26,.25);border-color:#ff9999;color:#fff;"><span class="flag">🇯🇵</span><span class="med">Wのキューティクル補修成分<sup>※</sup></span><br>ダメージが進んだキューティクルを補修し、うるおい＆ツヤを与えながらバリア機能をキープ</div>
+        <div class="bi-zh" style="background:rgba(21,101,192,.25);border-color:#80b3ff;color:#fff;"><span class="flag">🇹🇼</span><span class="med">W角質層護理成分<sup>※</sup></span><br>精準護理受損角質層，注入滿滿水分與光澤，同時強化髮絲保護屏障</div>
+      </div>
+    </div>
+
+    <!-- img_06.jpg -->
+    <div class="split2">
+      <div class="imgpanel" style="min-height:540px;">
+        <img src="LP/https___d2w53g1q050m78.cloudfront.net_cosmecollegecom_uploads_unu_unu-smptrtm-glsy_img_img_06.jpg" alt="img_06.jpg" />
+      </div>
+      <div class="col bglt" style="overflow-y:auto;max-height:540px;">
+
+        <div class="bi">
+          <div class="bi-label">① セクションタイトル（大）</div>
+          <div class="bi-jp"><span class="flag">🇯🇵</span><span class="med">Wのキューティクル補修成分<sup>※</sup>で<br>面の整ったきらめき髪✦へ</span></div>
+          <div class="bi-zh"><span class="flag">🇹🇼</span><span class="med">W角質層護理成分<sup>※</sup>，<br>打造表面平整、自帶閃耀光圈的秀髮✦</span></div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">② 説明文（上）</div>
+          <div class="bi-jp"><span class="flag">🇯🇵</span>ハイダメージ部分のキューティクルを補修し、毛髪にうるおいとツヤを与えながら髪本来のバリア機能をキープします。</div>
+          <div class="bi-zh"><span class="flag">🇹🇼</span>針對高度受損部位的角質層進行深度護理，為髮絲注入豐盈水潤與耀眼光澤，同時維持髮絲原有的保護功能。</div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">③ ダメージ説明（▼ 前）</div>
+          <div class="bi-jp"><span class="flag">🇯🇵</span>ダメージ進行によりキューティクルが剥がれ、めくれ上がると髪の栄養分が流れ出たり、手触りが悪くなる</div>
+          <div class="bi-zh"><span class="flag">🇹🇼</span>隨著受損加劇，角質層剝落翹起，導致髮絲水分與養分快速流失，手感也跟著變得粗糙乾澀。</div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">④ 成分ラベル（中央）</div>
+          <div class="bi-jp"><span class="flag">🇯🇵</span>● 毛髪補修成分</div>
+          <div class="bi-zh"><span class="flag">🇹🇼</span>● 護髮成分</div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">⑤ 成分名①（吹き出し）</div>
+          <div class="bi-jp"><span class="flag">🇯🇵</span>セテアラミドエチルジエトニウムサクシノイル<br>加水分解エンドウタンパク</div>
+          <div class="bi-zh"><span class="flag">🇹🇼</span>硬脂酰胺乙基二乙銨琥珀醯<br>加水分解豌豆蛋白</div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">⑥ 成分名②（吹き出し）</div>
+          <div class="bi-jp"><span class="flag">🇯🇵</span>セテアラミドエチルジエトニウム<br>加水分解コメタンパク</div>
+          <div class="bi-zh"><span class="flag">🇹🇼</span>硬脂酰胺乙基二乙銨<br>加水分解米蛋白</div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">⑦ 成分説明（▼ 後）</div>
+          <div class="bi-jp"><span class="flag">🇯🇵</span>キューティクルに似た構造を持つ成分でしっかり補修</div>
+          <div class="bi-zh"><span class="flag">🇹🇼</span>以結構近似角質層的成分，給予最服貼的集中護理</div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">⑧ 結果コピー（▼ 後）</div>
+          <div class="bi-jp"><span class="flag">🇯🇵</span>髪表面が整うことでツヤ誕生！さらに髪本来のバリア機能を高める！</div>
+          <div class="bi-zh"><span class="flag">🇹🇼</span>髮絲表面恢復平整，自然折射迷人光澤！更有助於提升髮絲本身的保護力！</div>
+        </div>
+
+      </div>
+    </div>
+    <div class="footnote">
+      <span class="jp-fn">🇯🇵 ※ セテアラミドエチルジエトニウムサクシノイル加水分解エンドウタンパク、セテアラミドエチルジエトニウム加水分解コメタンパク（全てシャンプー・トリートメント・ヘアミルクのみ）</span>
+      <span class="zh-fn">🇹🇼 ※ 硬脂酰胺乙基二乙銨琥珀醯加水分解豌豆蛋白、硬脂酰胺乙基二乙銨加水分解米蛋白（全系列，僅洗髮精・護髮素・護髮乳）</span>
+    </div>
+
+    <!-- img_02.jpg -->
+    <div class="dashed-top">
+      <div class="split2">
+        <div class="imgpanel" style="min-height:380px;">
+          <img src="LP/https___d2w53g1q050m78.cloudfront.net_cosmecollegecom_uploads_unu_unu-smptrtm-glsy_img_img_02.jpg" alt="img_02.jpg" />
+        </div>
+        <div class="col bglt" style="display:flex;flex-direction:column;justify-content:center;gap:12px;">
+          <div class="bi">
+            <div class="bi-label">img_02.jpg ─ 縦帯メインコピー</div>
+            <div class="bi-jp"><span class="flag">🇯🇵</span><span class="big">ダメージ・乾燥に負けない<br>とろツヤ髪をキープ！</span></div>
+            <div class="bi-zh"><span class="flag">🇹🇼</span><span class="big">無懼受損與乾燥挑戰，<br>全天候維持如絲緞般的柔耀光澤！</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════
+     SLIDE 07 ─ 香り img_03.jpg
+══════════════════════════════════════════════════ -->
+<section class="slide" id="s07">
+  <div class="slabel"><span class="sn">SLIDE 07</span><span class="st">香り紹介（img_03.jpg）</span></div>
+  <div class="card">
+    <div class="split2">
+      <div class="imgpanel" style="min-height:600px;">
+        <img src="LP/https___d2w53g1q050m78.cloudfront.net_cosmecollegecom_uploads_unu_unu-smptrtm-glsy_img_img_03.jpg" alt="img_03.jpg" />
+      </div>
+      <div class="col bglt" style="overflow-y:auto;max-height:600px;">
+
+        <div class="bi">
+          <div class="bi-label">① 手書き風コピー（上）</div>
+          <div class="bi-jp"><span class="flag">🇯🇵</span>心とろける</div>
+          <div class="bi-zh"><span class="flag">🇹🇼</span>令人心醉的療癒時光</div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">② 香り名（大）</div>
+          <div class="bi-jp"><span class="flag">🇯🇵</span><span class="big">ペアー＆<br>ブラウンシュガーの香り</span></div>
+          <div class="bi-zh"><span class="flag">🇹🇼</span><span class="big">梨子＆黑糖<br>微甜誘惑香氛</span></div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">③ 香り説明文</div>
+          <div class="bi-jp"><span class="flag">🇯🇵</span>すっきりとしたペアーとフレッシュなカシスに、深みのあるブラウンシュガーの甘さをプラスした、鮮やかで重厚感のある魅惑の香り。</div>
+          <div class="bi-zh"><span class="flag">🇹🇼</span>清新梨子與微酸黑醋栗的果香，完美揉合深邃黑糖的溫暖甘甜，交織出層次豐富、令人難以抗拒的迷人香氛。</div>
+        </div>
+
+        <!-- 香りピラミッド -->
+        <div class="pyr">
+          <div class="pyr-lbl"><span>🍐</span><span>トップ<br>Top</span></div>
+          <div class="pyr-c tp">
+            <div class="pyr-inner-lbl">Top Note</div>
+            <div class="pyr-jp">ペアー、ベルガモット、ピーチ、ベリー、カシス、リーフィグリーン</div>
+            <div class="pyr-zh">梨子、佛手柑、水蜜桃、莓果、黑醋栗、葉綠無花果</div>
+          </div>
+        </div>
+
+        <div class="pyr">
+          <div class="pyr-lbl"><span>🌺</span><span>ミドル<br>Heart</span></div>
+          <div class="pyr-c md">
+            <div class="pyr-inner-lbl">Heart Note</div>
+            <div class="pyr-jp">ガーデニア、ジャスミン、イランイラン、プルメリア、ミュゲ、ローズ、ヘリオトロープ、ネロリ、ガルバナム</div>
+            <div class="pyr-zh">梔子花、茉莉、依蘭、雞蛋花、鈴蘭、玫瑰、香草百合、橙花、白松香</div>
+          </div>
+        </div>
+
+        <div class="pyr">
+          <div class="pyr-lbl"><span>🍬</span><span>ベース<br>Base</span></div>
+          <div class="pyr-c bs">
+            <div class="pyr-inner-lbl">Base Note</div>
+            <div class="pyr-jp">ブラウンシュガー、ムスク、アンバー、サンダルウッド、パチュリ、バニラ、トンカビーン、オリス</div>
+            <div class="pyr-zh">黑糖、麝香、琥珀、檀香木、廣藿香、香草、東加豆、鳶尾根</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════
+     SLIDE 08 ─ Favorite 1 カラーキープ / Favorite 2 ヒートリペア  favorite_01.jpg
+══════════════════════════════════════════════════ -->
+<section class="slide" id="s08">
+  <div class="slabel"><span class="sn">SLIDE 08</span><span class="st">Favorite 1・2（favorite_01.jpg）</span></div>
+  <div class="card">
+    <div class="hdr org">
+      <div class="bi" style="margin:0;border-color:rgba(255,255,255,.3);max-width:700px;margin:0 auto;">
+        <div class="bi-label" style="background:rgba(255,255,255,.15);color:rgba(255,255,255,.7);">セクション冒頭タイトル</div>
+        <div class="bi-jp" style="background:rgba(139,26,26,.25);border-color:#ffa0a0;color:#fff;"><span class="flag">🇯🇵</span>さらにウヌボレグロッシーのこだわり処方</div>
+        <div class="bi-zh" style="background:rgba(21,101,192,.25);border-color:#80b3ff;color:#fff;"><span class="flag">🇹🇼</span>UNU 護色亮澤系列的獨家配方</div>
+      </div>
+    </div>
+
+    <div class="split2">
+      <div class="imgpanel" style="min-height:640px;">
+        <img src="LP/https___d2w53g1q050m78.cloudfront.net_cosmecollegecom_uploads_unu_unu-smptrtm-glsy_img_favorite_01.jpg" alt="favorite_01.jpg" />
+      </div>
+      <div class="col bglt" style="overflow-y:auto;max-height:640px;">
+
+        <!-- Fav 1 -->
+        <div style="background:rgba(244,123,32,.1);border-radius:8px;padding:6px 10px;margin-bottom:8px;font-size:.72rem;font-weight:700;color:var(--org);">▶ Favorite 1</div>
+
+        <div class="bi">
+          <div class="bi-label">① Fav1 見出し（帯）</div>
+          <div class="bi-jp"><span class="flag">🇯🇵</span><span class="med">カラーキープ</span></div>
+          <div class="bi-zh"><span class="flag">🇹🇼</span><span class="med">護色持色</span></div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">② Fav1 説明文</div>
+          <div class="bi-jp"><span class="flag">🇯🇵</span>髪と頭皮をやさしく洗い上げるPPT系洗浄成分<sup>※1</sup>+アミノ酸系洗浄成分<sup>※2</sup>を採用し褪色を抑制<sup>※3</sup>。</div>
+          <div class="bi-zh"><span class="flag">🇹🇼</span>嚴選溫和洗淨頭皮與髮絲的PPT系洗淨成分<sup>※1</sup>及胺基酸系洗淨成分<sup>※2</sup>，有效幫助抑制染後褪色<sup>※3</sup>。</div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">③ Fav1 成分ラベル</div>
+          <div class="bi-jp"><span class="flag">🇯🇵</span>カラーキープ成分</div>
+          <div class="bi-zh"><span class="flag">🇹🇼</span>護色成分</div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">④ Fav1 成分3種（画像アイコン付き）</div>
+          <div class="bi-jp"><span class="flag">🇯🇵</span><span class="chip g">リンゴ酸ジイソステアリル</span><span class="chip g">加水分解水添デンプン<sup>※4</sup></span><span class="chip g">トリオレイン<sup>※5</sup></span></div>
+          <div class="bi-zh"><span class="flag">🇹🇼</span><span class="chip t">蘋果酸二異硬脂酯</span><span class="chip t">加水分解氫化澱粉<sup>※4</sup></span><span class="chip t">三油酸甘油酯<sup>※5</sup></span></div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">⑤ Fav1 本文</div>
+          <div class="bi-jp"><span class="flag">🇯🇵</span>キューティクルを引き締めて褪色を防ぐ「カラーキープ成分」配合で、おしゃれな髪の色落ちを防ぎます。</div>
+          <div class="bi-zh"><span class="flag">🇹🇼</span>搭配能緊縮角質層的「護色成分」，幫助鎖住髮色，讓染後的絕美髮色更持久亮麗。</div>
+        </div>
+
+        <div class="footnote" style="padding:8px 0;background:transparent;border:none;">
+          <span class="jp-fn">🇯🇵 ※1 コカミドプロピルベタイン　※2 ヤシメチルタウリンNa（シャンプーのみ）　※3 シャンプーのみ　※4 シャンプー・トリートメント・ヘアミルクのみ　※5 ヘアオイルのみ</span>
+          <span class="zh-fn">🇹🇼 ※1 椰油醯胺丙基甜菜鹼　※2 椰油醯甲基牛磺酸鈉（僅洗髮精）　※3 僅洗髮精　※4 僅洗髮精・護髮素・護髮乳　※5 僅護髮油</span>
+        </div>
+
+        <hr style="border:none;border-top:1.5px dashed #ddeaea;margin:12px 0;">
+
+        <!-- Fav 2 -->
+        <div style="background:rgba(244,123,32,.1);border-radius:8px;padding:6px 10px;margin-bottom:8px;font-size:.72rem;font-weight:700;color:var(--org);">▶ Favorite 2</div>
+
+        <div class="bi">
+          <div class="bi-label">⑥ Fav2 見出し（帯）</div>
+          <div class="bi-jp"><span class="flag">🇯🇵</span><span class="med">ヒートリペア処方</span></div>
+          <div class="bi-zh"><span class="flag">🇹🇼</span><span class="med">熱能護理配方</span></div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">⑦ Fav2 説明文（全文）</div>
+          <div class="bi-jp"><span class="flag">🇯🇵</span>ダメージが進んだ毛髪に吸着して熱と反応することでシールドを形成！髪表面を保護して1本1本の強度ケア＆ハリコシUPに。毎日のヘアアレンジに欠かせないヘアアイロンやコテの熱ダメージからも髪を守ります。</div>
+          <div class="bi-zh"><span class="flag">🇹🇼</span>吹風機也能變成護髮神隊友！成分附著於受損髮絲後，遇熱即反應形成隱形保護膜！溫和呵護髮絲表面，有助於提升每一根髮絲的強韌度與彈性。有效防禦日常造型時吹風機、電棒捲帶來的熱傷害。</div>
+        </div>
+
+        <div class="footnote" style="padding:8px 0;background:transparent;border:none;">
+          <span class="jp-fn">🇯🇵 ※ [シャンプー・トリートメント・ヘアミルク]（ジメチコン/ポリシロキサン-15）コポリマー、加水分解シルク、[ヘアオイル]γ-ドデカラクトン</span>
+          <span class="zh-fn">🇹🇼 ※ [洗髮精・護髮素・護髮乳]（二甲基矽氧烷/聚矽氧烷-15）共聚物、加水分解絲蛋白、[護髮油]γ-十二內酯</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════
+     SLIDE 09 ─ Favorite 3 豊富な補修＆美容成分 favorite_02.jpg
+══════════════════════════════════════════════════ -->
+<section class="slide" id="s09">
+  <div class="slabel"><span class="sn">SLIDE 09</span><span class="st">Favorite 3（favorite_02.jpg）</span></div>
+  <div class="card">
+    <div class="split2">
+      <div class="imgpanel" style="min-height:620px;">
+        <img src="LP/https___d2w53g1q050m78.cloudfront.net_cosmecollegecom_uploads_unu_unu-smptrtm-glsy_img_favorite_02.jpg" alt="favorite_02.jpg" />
+      </div>
+      <div class="col bglt" style="overflow-y:auto;max-height:620px;">
+
+        <div class="bi">
+          <div class="bi-label">① 見出し（帯）</div>
+          <div class="bi-jp"><span class="flag">🇯🇵</span><span class="med">豊富な補修＆美容成分</span></div>
+          <div class="bi-zh"><span class="flag">🇹🇼</span><span class="med">滿滿的護理＆美容精華</span></div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">② 説明文（全文）</div>
+          <div class="bi-jp"><span class="flag">🇯🇵</span>一時的なケアではなく健康的な髪をキープするために、髪の構成要素それぞれに適した処方でアプローチ！補修・美容成分をバランス良く採用し、内側から整ったとろツヤ髪へ。</div>
+          <div class="bi-zh"><span class="flag">🇹🇼</span>拒絕短暫的表面功夫，為了長效維持秀髮的健康外觀，我們針對髮絲各組成要素採用最適合的配方！完美比例調和護理與美容成分，讓秀髮由內而外綻放如絲般的光澤。</div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">③ 親水性補修成分（カテゴリ＋成分4種）</div>
+          <div class="bi-jp"><span class="flag">🇯🇵</span><strong>── 親水性補修成分 ──</strong><br>
+            <span class="chip g">加水分解卵殻膜<sup>※1</sup></span>
+            <span class="chip g">加水分解コラーゲン<sup>※2</sup></span>
+            <span class="chip g">加水分解シルク<sup>※3</sup></span>
+            <span class="chip g">グルタミン酸<sup>※1</sup></span>
+          </div>
+          <div class="bi-zh"><span class="flag">🇹🇼</span><strong>── 親水性護理成分 ──</strong><br>
+            <span class="chip t">加水分解蛋殼膜<sup>※1</sup></span>
+            <span class="chip t">加水分解膠原蛋白<sup>※2</sup></span>
+            <span class="chip t">加水分解絲蛋白<sup>※3</sup></span>
+            <span class="chip t">麩胺酸<sup>※1</sup></span>
+          </div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">④ 親油性補修成分（カテゴリ＋成分2種）</div>
+          <div class="bi-jp"><span class="flag">🇯🇵</span><strong>── 親油性補修成分 ──</strong><br>
+            <span class="chip g">ラウロイルグルタミン酸ジ（フィトステリル/オクチルドデシル）<sup>※4</sup></span>
+            <span class="chip g">セラミドNG<sup>※4</sup></span>
+          </div>
+          <div class="bi-zh"><span class="flag">🇹🇼</span><strong>── 親油性護理成分 ──</strong><br>
+            <span class="chip t">月桂醯穀氨酸二（植物固醇/辛基十二烷基）<sup>※4</sup></span>
+            <span class="chip t">神經醯胺NG<sup>※4</sup></span>
+          </div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">⑤ 保湿成分（カテゴリ＋成分3種）</div>
+          <div class="bi-jp"><span class="flag">🇯🇵</span><strong>── 保湿成分 ──</strong><br>
+            <span class="chip g">セラミドNP</span>
+            <span class="chip g">カリナバラ果実油</span>
+            <span class="chip g">スフィンゴ脂質</span>
+          </div>
+          <div class="bi-zh"><span class="flag">🇹🇼</span><strong>── 保濕成分 ──</strong><br>
+            <span class="chip t">神經醯胺NP</span>
+            <span class="chip t">巴巴蘇果油</span>
+            <span class="chip t">鞘磷脂</span>
+          </div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">⑥ 紫外線ケア成分</div>
+          <div class="bi-jp"><span class="flag">🇯🇵</span><strong>── 紫外線ケア ──</strong><br><span class="chip g">ククイナッツ油<sup>※5</sup></span></div>
+          <div class="bi-zh"><span class="flag">🇹🇼</span><strong>── 紫外線護理 ──</strong><br><span class="chip t">庫庫伊堅果油<sup>※5</sup></span></div>
+        </div>
+
+      </div>
+    </div>
+    <div class="footnote">
+      <span class="jp-fn">🇯🇵 ※1 シャンプー・トリートメント・ヘアミルクのみ　※2 ヘアオイルではイソステアロイル加水分解コラーゲンを配合　※3 ヘアオイルではイソステアロイル加水分解シルクを配合　※4 トリートメント・ヘアミルク・ヘアオイルのみ　※5 ククイノキ種子油</span>
+      <span class="zh-fn">🇹🇼 ※1 僅洗髮精・護髮素・護髮乳　※2 護髮油中以異硬脂醯加水分解膠原蛋白配合　※3 護髮油中以異硬脂醯加水分解絲蛋白配合　※4 僅護髮素・護髮乳・護髮油　※5 庫庫伊堅果種子油</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════
+     SLIDE 10 ─ 5つのフリー ＋ 3STEP free_step.jpg ＋ img_07.jpg
+══════════════════════════════════════════════════ -->
+<section class="slide" id="s10">
+  <div class="slabel"><span class="sn">SLIDE 10</span><span class="st">5つのフリー ＋ 3STEP（free_step.jpg ＋ img_07.jpg）</span></div>
+  <div class="card">
+
+    <!-- 5フリー ヘッダー -->
+    <div class="hdr">
+      <div class="bi" style="margin:0;border-color:rgba(255,255,255,.3);max-width:720px;margin:0 auto;">
+        <div class="bi-label" style="background:rgba(255,255,255,.12);color:rgba(255,255,255,.65);">セクションタイトル</div>
+        <div class="bi-jp" style="background:rgba(139,26,26,.25);border-color:#ffa0a0;color:#fff;"><span class="flag">🇯🇵</span><span class="med">5つのフリー</span></div>
+        <div class="bi-zh" style="background:rgba(21,101,192,.25);border-color:#80b3ff;color:#fff;"><span class="flag">🇹🇼</span><span class="med">5 大安心無添加</span></div>
+      </div>
+      <div class="bi" style="margin:12px auto 0;border-color:rgba(255,255,255,.3);max-width:720px;">
+        <div class="bi-label" style="background:rgba(255,255,255,.12);color:rgba(255,255,255,.65);">サブコピー</div>
+        <div class="bi-jp" style="background:rgba(139,26,26,.25);border-color:#ffa0a0;color:#fff;"><span class="flag">🇯🇵</span>毎日使うものだから頭皮にも髪にもやさしいこだわり処方</div>
+        <div class="bi-zh" style="background:rgba(21,101,192,.25);border-color:#80b3ff;color:#fff;"><span class="flag">🇹🇼</span>每天都要使用的產品，當然要給頭皮與髮絲最溫和的嚴選配方</div>
+      </div>
+    </div>
+
+    <!-- 5フリー グリッド -->
+    <div class="free5 bglt">
+      <div class="fitem">
+        <span class="ico">🚫</span>
+        <div class="fjp">シリコン<sup>※1</sup></div>
+        <div class="fzh">矽靈<sup>※1</sup></div>
+        <div class="fsub">フリー / 無添加</div>
+      </div>
+      <div class="fitem">
+        <span class="ico">🚫</span>
+        <div class="fjp">サルフェート<sup>※2</sup></div>
+        <div class="fzh">硫酸鹽系界活性劑<sup>※2</sup></div>
+        <div class="fsub">フリー / 無添加</div>
+      </div>
+      <div class="fitem">
+        <span class="ico">🚫</span>
+        <div class="fjp">鉱物油</div>
+        <div class="fzh">礦物油</div>
+        <div class="fsub">フリー / 無添加</div>
+      </div>
+      <div class="fitem">
+        <span class="ico">🚫</span>
+        <div class="fjp">紫外線吸収剤</div>
+        <div class="fzh">紫外線吸收劑</div>
+        <div class="fsub">フリー / 無添加</div>
+      </div>
+      <div class="fitem">
+        <span class="ico">🚫</span>
+        <div class="fjp">合成着色料</div>
+        <div class="fzh">合成色素</div>
+        <div class="fsub">フリー / 無添加</div>
+      </div>
+    </div>
+    <div class="footnote">
+      <span class="jp-fn">🇯🇵 ※1 シャンプーのみ　※2 硫酸系界面活性剤</span>
+      <span class="zh-fn">🇹🇼 ※1 僅洗髮精　※2 硫酸系界面活性劑</span>
+    </div>
+
+    <!-- 3STEP -->
+    <div class="hdr" style="margin-top:4px;">
+      <div class="bi" style="margin:0 auto;border-color:rgba(255,255,255,.3);max-width:720px;">
+        <div class="bi-label" style="background:rgba(255,255,255,.12);color:rgba(255,255,255,.65);">3STEP セクションタイトル</div>
+        <div class="bi-jp" style="background:rgba(139,26,26,.25);border-color:#ffa0a0;color:#fff;"><span class="flag">🇯🇵</span><span class="med">とろツヤ髪にばっちりキメる 3STEP</span></div>
+        <div class="bi-zh" style="background:rgba(21,101,192,.25);border-color:#80b3ff;color:#fff;"><span class="flag">🇹🇼</span><span class="med">打造如絲光澤秀髮的 3步驟</span></div>
+      </div>
+    </div>
+
+    <div class="split3 bglt" style="gap:14px;padding:24px 32px;">
+
+      <div class="scard">
+        <div class="shdr" style="background:var(--teal);">
+          <div class="sn2">1</div>
+          <div><div class="st2">SHAMPOO</div><div class="ss2">STEP 1</div></div>
+        </div>
+        <div class="sbody">
+          <div class="lang-tag lang-jp-tag">🇯🇵 日文</div>
+          <div class="sli jp-li">ぬるま湯で頭皮や髪を予洗い</div>
+          <div class="sli jp-li">適量を手に取り、よく泡立ててからやさしくマッサージするように洗う</div>
+          <div class="sli jp-li">しっかりすすぐ</div>
+          <div class="lang-tag lang-zh-tag" style="margin-top:10px;">🇹🇼 中文</div>
+          <div class="sli tl-li">以溫水充分預濕頭皮與髮絲</div>
+          <div class="sli tl-li">取適量於手心，搓揉出綿密泡泡後，以指腹輕柔按摩洗淨</div>
+          <div class="sli tl-li">以清水徹底沖洗乾淨</div>
+        </div>
+      </div>
+
+      <div class="scard">
+        <div class="shdr" style="background:var(--org);">
+          <div class="sn2">2</div>
+          <div><div class="st2">TREATMENT</div><div class="ss2">STEP 2</div></div>
+        </div>
+        <div class="sbody">
+          <div class="lang-tag lang-jp-tag">🇯🇵 日文</div>
+          <div class="sli jp-li">水気をきり、適量を中間〜毛先中心によくもみこみ馴染ませる</div>
+          <div class="sli jp-li">少し置いたらよくすすぐ</div>
+          <div class="lang-tag lang-zh-tag" style="margin-top:10px;">🇹🇼 中文</div>
+          <div class="sli og-li">輕輕擠去髮絲多餘水分後，取適量均勻塗抹於中段至髮尾，輕柔按摩幫助吸收</div>
+          <div class="sli og-li">停留片刻後，以清水徹底沖洗乾淨</div>
+        </div>
+      </div>
+
+      <div class="scard">
+        <div class="shdr" style="background:var(--teal-d);">
+          <div class="sn2">3</div>
+          <div><div class="st2">OIL・MILK</div><div class="ss2">STEP 3</div></div>
+        </div>
+        <div class="sbody">
+          <div class="lang-tag lang-jp-tag">🇯🇵 日文</div>
+          <div class="sli jp-li">タオルドライ後や乾いた髪に毛先を中心に適量を馴染ませる</div>
+          <div class="lang-tag lang-zh-tag" style="margin-top:10px;">🇹🇼 中文</div>
+          <div class="sli dk-li">毛巾按壓擦乾或於乾髮時，取適量以髮尾為中心均勻塗抹，免沖洗</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- img_07.jpg -->
+    <div class="dashed-top">
+      <div class="split2">
+        <div class="imgpanel" style="min-height:360px;">
+          <img src="LP/https___d2w53g1q050m78.cloudfront.net_cosmecollegecom_uploads_unu_unu-smptrtm-glsy_img_img_07.jpg" alt="img_07.jpg" />
+        </div>
+        <div class="col bglt" style="display:flex;flex-direction:column;justify-content:center;gap:12px;">
+          <div class="bi">
+            <div class="bi-label">img_07 ─ 上部コピー</div>
+            <div class="bi-jp"><span class="flag">🇯🇵</span>思わずうぬぼれちゃう</div>
+            <div class="bi-zh"><span class="flag">🇹🇼</span>忍不住為自己感到自豪</div>
+          </div>
+          <div class="bi">
+            <div class="bi-label">img_07 ─ メインコピー（大）</div>
+            <div class="bi-jp"><span class="flag">🇯🇵</span><span class="big">憧れのとろツヤ髪に</span></div>
+            <div class="bi-zh"><span class="flag">🇹🇼</span><span class="big">輕鬆擁有夢寐以求的如絲光澤髮</span></div>
+          </div>
+          <div class="bi">
+            <div class="bi-label">img_07 ─ 帯上サブコピー</div>
+            <div class="bi-jp"><span class="flag">🇯🇵</span>髪の内側からしっかり整えて</div>
+            <div class="bi-zh"><span class="flag">🇹🇼</span>從髮絲內部扎實打底</div>
+          </div>
+          <div class="bi">
+            <div class="bi-label">img_07 ─ オレンジ帯コピー</div>
+            <div class="bi-jp"><span class="flag">🇯🇵</span><span class="med">きらめき感アップ</span></div>
+            <div class="bi-zh"><span class="flag">🇹🇼</span><span class="med">閃耀魅力瞬間升級</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════
+     SLIDE 11 ─ 濃密ケア戦略 mv_btm.jpg
+══════════════════════════════════════════════════ -->
+<section class="slide" id="s11">
+  <div class="slabel"><span class="sn">SLIDE 11</span><span class="st">濃密ケア戦略（mv_btm.jpg）</span></div>
+  <div class="card">
+    <div class="split2">
+      <div class="imgpanel" style="min-height:500px;">
+        <img src="LP/https___d2w53g1q050m78.cloudfront.net_cosmecollegecom_uploads_unu_unu-smptrtm-glsy_img_mv_btm.jpg" alt="mv_btm.jpg" />
+      </div>
+      <div class="col bglt" style="display:flex;flex-direction:column;justify-content:center;gap:14px;">
+
+        <div class="bi">
+          <div class="bi-label">① メインコピー（白・大）</div>
+          <div class="bi-jp"><span class="flag">🇯🇵</span><span class="big">濃密ケア戦略！</span></div>
+          <div class="bi-zh"><span class="flag">🇹🇼</span><span class="big">濃密護理大作戰！</span></div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">② 帯テキスト（白帯）</div>
+          <div class="bi-jp"><span class="flag">🇯🇵</span><span class="med">UNU のオリジナル処方</span></div>
+          <div class="bi-zh"><span class="flag">🇹🇼</span><span class="med">UNU 獨家黃金配方</span></div>
+        </div>
+
+        <div class="bi">
+          <div class="bi-label">③ オレンジコピー（下部・大）</div>
+          <div class="bi-jp"><span class="flag">🇯🇵</span><span class="big">憧れのとろツヤ髪に<br>ばっちりキメる！</span></div>
+          <div class="bi-zh"><span class="flag">🇹🇼</span><span class="big">完美打造令人憧憬的如絲光澤髮，<br>讓你隨時隨地自信出擊！</span></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════
+     SLIDE 12 ─ ブランド哲学 btm.jpg
+══════════════════════════════════════════════════ -->
+<section class="slide" id="s12">
+  <div class="slabel"><span class="sn">SLIDE 12</span><span class="st">ブランド哲学・クロージング（btm.jpg）</span></div>
+  <div class="card">
+    <div class="split2">
+      <div class="imgpanel" style="min-height:560px;">
+        <img src="LP/https___d2w53g1q050m78.cloudfront.net_cosmecollegecom_uploads_unu_unu-smptrtm-glsy_img_btm.jpg" alt="btm.jpg" />
+      </div>
+      <div class="col dark-col" style="display:flex;flex-direction:column;justify-content:center;gap:12px;padding:36px 30px;">
+
+        <div class="bi" style="border-color:rgba(255,255,255,.2);">
+          <div class="bi-label" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.6);">① 上部コピー（右）</div>
+          <div class="bi-jp" style="background:rgba(139,26,26,.3);border-color:#ff9999;color:#fff;"><span class="flag">🇯🇵</span><span class="med">うぬぼれよう。</span><br>私を愛せるのは私だけ。</div>
+          <div class="bi-zh" style="background:rgba(21,101,192,.3);border-color:#80b3ff;color:#fff;"><span class="flag">🇹🇼</span><span class="med">盡情為自己自豪吧。</span><br>能最愛自己的，只有自己。</div>
+        </div>
+
+        <div class="bi" style="border-color:rgba(255,255,255,.2);">
+          <div class="bi-label" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.6);">② ボディコピー（中央左）</div>
+          <div class="bi-jp" style="background:rgba(139,26,26,.3);border-color:#ff9999;color:#fff;"><span class="flag">🇯🇵</span>流行のスタイルを追いかけたい日も<br>自分らしいスタイルを貫きたい日も</div>
+          <div class="bi-zh" style="background:rgba(21,101,192,.3);border-color:#80b3ff;color:#fff;"><span class="flag">🇹🇼</span>想大膽嘗試流行造型的日子，<br>想堅持自我風格的日子</div>
+        </div>
+
+        <div class="bi" style="border-color:rgba(255,255,255,.2);">
+          <div class="bi-label" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.6);">③ ブランドコンセプト</div>
+          <div class="bi-jp" style="background:rgba(139,26,26,.3);border-color:#ff9999;color:#fff;"><span class="flag">🇯🇵</span>愛せる自分でいるための<br>ヘアケアブランド</div>
+          <div class="bi-zh" style="background:rgba(21,101,192,.3);border-color:#80b3ff;color:#fff;"><span class="flag">🇹🇼</span>為了讓你更愛自己而誕生的<br>專屬護髮品牌</div>
+        </div>
+
+        <div class="bi" style="border-color:rgba(255,255,255,.2);">
+          <div class="bi-label" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.6);">④ ブランドロゴ</div>
+          <div class="bi-jp" style="background:rgba(139,26,26,.3);border-color:#ff9999;color:#fff;"><span class="flag">🇯🇵</span><span style="font-family:'Outfit',sans-serif;font-size:2rem;font-weight:900;letter-spacing:3px;">UNU</span></div>
+          <div class="bi-zh" style="background:rgba(21,101,192,.3);border-color:#80b3ff;color:#fff;"><span class="flag">🇹🇼</span><span style="font-family:'Outfit',sans-serif;font-size:2rem;font-weight:900;letter-spacing:3px;">UNU</span></div>
+        </div>
+
+        <div class="bi" style="border-color:rgba(255,255,255,.2);">
+          <div class="bi-label" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.6);">⑤ 英語コピー（最下部）</div>
+          <div class="bi-jp" style="background:rgba(139,26,26,.3);border-color:#ff9999;color:#fff;"><span class="flag">🇯🇵</span>I'm the only one who can love myself.</div>
+          <div class="bi-zh" style="background:rgba(21,101,192,.3);border-color:#80b3ff;color:#fff;"><span class="flag">🇹🇼</span>I'm the only one who can love myself.<br><span style="font-size:.82rem;opacity:.8;">（英語そのまま使用／英語原文可直接沿用）</span></div>
+        </div>
+
+        <div class="bi" style="border-color:rgba(255,255,255,.2);">
+          <div class="bi-label" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.6);">⑥ 日本語コピー（最下部）</div>
+          <div class="bi-jp" style="background:rgba(139,26,26,.3);border-color:#ff9999;color:#fff;"><span class="flag">🇯🇵</span>私を愛せるのは私だけ。</div>
+          <div class="bi-zh" style="background:rgba(21,101,192,.3);border-color:#80b3ff;color:#fff;"><span class="flag">🇹🇼</span>能夠全心全意愛自己的，只有自己。</div>
+        </div>
+
+      </div>
+    </div>
+    <!-- 法規聲明 -->
+    <div style="background:#001A18;padding:16px 36px;">
+      <p style="font-size:.68rem;color:rgba(255,255,255,.4);line-height:1.8;">
+        🛡️ 【台灣藥事法（化粧品衛生安全管理法）合規聲明】本簡報所有中文翻譯均依台灣化粧品廣告法規調整，避免宣稱醫療效能。所有「修護」改為「護理」，功效說明均加入「有助於」、「呈現」等緩和語，以符合衛福部食品藥物管理署（TFDA）相關規定。實際廣告文案請於上市前再行確認合規。
+      </p>
+    </div>
+  </div>
+</section>
+
+
+</main>
+
+<script>
+  const TOTAL = 12;
+  let cur = 1;
+
+  const dotWrap = document.getElementById('dots');
+  for (let i = 1; i <= TOTAL; i++) {
+    const b = document.createElement('button');
+    b.className = 'dot' + (i===1?' on':'');
+    b.setAttribute('aria-label', `スライド ${i}`);
+    b.dataset.i = i;
+    b.addEventListener('click', () => jump(i));
+    dotWrap.appendChild(b);
+  }
+
+  function jump(n) {
+    if (n < 1 || n > TOTAL) return;
+    document.getElementById('s' + String(cur).padStart(2,'0')).classList.remove('on');
+    dotWrap.children[cur-1].classList.remove('on');
+    cur = n;
+    const el = document.getElementById('s' + String(cur).padStart(2,'0'));
+    el.classList.add('on');
+    dotWrap.children[cur-1].classList.add('on');
+    document.getElementById('ctr').innerHTML = `${cur} / ${TOTAL}<br><span style="font-size:.65rem;opacity:.5;">🇯🇵 日文原文 ＋ 🇹🇼 廣告優化版中文</span>`;
+    document.getElementById('prev').disabled = cur === 1;
+    document.getElementById('next').disabled = cur === TOTAL;
+    window.scrollTo({ top: 62, behavior: 'smooth' });
+  }
+
+  function go(d) { jump(cur + d); }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') go(+1);
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   go(-1);
+  });
+
+  let tx0 = 0;
+  document.addEventListener('touchstart', e => { tx0 = e.touches[0].clientX; }, { passive:true });
+  document.addEventListener('touchend',   e => {
+    const d = e.changedTouches[0].clientX - tx0;
+    if (Math.abs(d) > 55) go(d < 0 ? +1 : -1);
+  }, { passive:true });
+
+  jump(1);
+</script>
+</body>
+</html>
